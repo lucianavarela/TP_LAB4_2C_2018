@@ -56,7 +56,7 @@ export class LoginService {
           localStorage.setItem('token', data.token);
           this._token = localStorage.getItem('token');
           this.userTokenData.next(!this._token);
-          //window.location.href = '/';
+          window.location.href = '/';
         } else {
           this.popup.show("error", data.mensaje);
         }
