@@ -1,0 +1,14 @@
+/* You can add global styles to this file, and also import other style files */
+/*@import "initial-variables";
+@import "functions";*/
+@import "bulma";
+
+
+body {
+    background-color: #e0e0e0;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif !important;
+    height: 100vh;
+    min-height: 100vh;
+    height:auto;
+}
+

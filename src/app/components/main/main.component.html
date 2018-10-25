@@ -1,0 +1,23 @@
+<div class="container has-navbar-fixed-top">
+  <div class="columns">
+    <div class="column is-narrow">
+      <img *ngIf="is_logged" class="is-centered" src="assets/{{usuario.sector}}.svg" alt="icon">
+    </div>
+    <div class="column">
+      <section class="hero">
+        <div class="hero-body">
+          <div class="container">
+            <h1 class="title">
+              Bienvenido!
+            </h1>
+            <h2 *ngIf="is_logged" class="subtitle">
+              Qué acción querés hacer?
+            </h2>
+            <div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>

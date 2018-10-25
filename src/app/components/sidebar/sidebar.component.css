@@ -1,0 +1,11 @@
+#bar-buttons:hover #nombre {
+    display: none !important;
+}
+
+#bar-buttons:hover #signout {
+    display: block !important;
+}
+
+#signout {
+    display: none;
+}

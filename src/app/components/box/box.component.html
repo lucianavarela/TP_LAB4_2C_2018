@@ -1,0 +1,22 @@
+<div class="card">
+  <div class="card-content">
+    <div class="media">
+      <div class="media-left">
+        <figure class="image is-48x48">
+          <img src="assets/mesa.svg" alt="Vehiculo">
+        </figure>
+      </div>
+      <div class="media-content">
+        <p class="subtitle is-6" style="text-transform: capitalize">{{mesa.codigo}}</p>
+      </div>
+    </div>
+    <div class="has-text-centered" style="margin-bottom:1rem">
+      <p>{{mesa.estado}}</p>
+    </div>
+    <footer class="card-footer">
+      <a class="has-text-info card-footer-item" (click)="editar(mesa)">Editar</a>
+      <a class="has-text-info card-footer-item" (click)="borrar(mesa)">Borrar</a>
+    </footer>
+
+  </div>
+</div>

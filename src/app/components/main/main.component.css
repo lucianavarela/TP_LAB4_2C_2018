@@ -1,0 +1,20 @@
+.search {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+}
+
+.add {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+}
+
+img {
+    height: 7rem;
+    padding-top: 1rem;
+}
+
+.has-navbar-fixed-top {
+    padding-top:2rem;
+}

@@ -1,0 +1,76 @@
+<nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation" style="box-shadow: 0 1px 5px #888888">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="/">
+      <img src="assets/logo.png" width="112" height="28" style="max-height:4.75rem">
+    </a>
+
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item" href="/">
+        Home
+      </a>
+
+      <a *ngIf="is_logged" class="navbar-item" href="/mesas">
+        Mesas
+      </a>
+
+      <div *ngIf="is_logged" class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link" href="/comandas">
+          Comandas
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item">
+            Nueva
+          </a>
+        </div>
+      </div>
+
+      <a *ngIf="is_logged" class="navbar-item" href="/pedidos">
+        Pedidos
+      </a>
+
+      <a *ngIf="is_logged&&usuario.sector!='management'" class="navbar-item" href="/empleados">
+        Empleados
+      </a>
+
+      <div *ngIf="is_logged&&usuario.sector=='management'" class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link" href="/empleados">
+          Empleados
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item">
+            Nuevo
+          </a>
+        </div>
+      </div>
+
+      <a *ngIf="is_logged&&usuario.sector=='management'" class="navbar-item" href="/admin">
+        Admin
+      </a>
+
+    </div>
+
+    <div class="navbar-end">
+      <div class="navbar-item has-text-centered" id="bar-buttons">
+        <div class="buttons">
+          <a *ngIf="!is_logged" class="button is-primary" routerLink="/login" style="background-color:#dda59b">
+            <strong >Log in</strong>
+          </a>
+          <a *ngIf="is_logged" id="signout" class="button is-light" (click)="logout()">
+            Log Out
+          </a>
+          <a *ngIf="is_logged" id="nombre" class="button is-white">
+            Hola {{usuario.usuario}}!
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,12 @@
+<div class="container has-navbar-fixed-top">
+  <div style="padding-top:6rem;" *ngIf="mesas.length > 0">
+    <div class="columns is-multiline">
+      <div *ngFor="let mesa of mesas" class="column is-narrow">
+        <app-box [mesa]="mesa"></app-box>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="message!=''" class="has-text-centered">
+    <p class="has-text-gray">{{message}}</p>
+  </div>
+</div>
