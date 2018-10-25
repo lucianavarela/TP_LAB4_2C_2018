@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { tokenNotExpired, JwtHelper } from 'angular2-jwt';
 import { Router } from '@angular/router';
 import { MihttpService } from './mihttp.service';
 import { Subject } from 'rxjs';
 import { PopupComponent } from '../components/popup/popup.component';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,7 @@ export class LoginService {
 
   public name: string;
   private _token: string;
-  jwtHelper: JwtHelper = new JwtHelper();
+  jwtHelper = new JwtHelperService();
   userTokenData: Subject<any> = new Subject<any>();
 
   constructor(private router: Router, private http: MihttpService, public popup: PopupComponent) {
@@ -24,7 +24,7 @@ export class LoginService {
 
   public isLogued() {
     try {
-      let rta = tokenNotExpired() || false;
+      let rta = this.jwtHelper.isTokenExpired() || false;
       return rta;
     } catch (error) {
       return false;
