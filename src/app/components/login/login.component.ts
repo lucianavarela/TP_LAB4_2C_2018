@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, AbstractControl, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LoginService } from '../../services/login.service';
+import { LoginService } from '../../services/login/login.service';
 
 export class Usuario {
   public usuario: string = '';
@@ -22,7 +21,7 @@ export class Usuario {
 export class LoginComponent implements OnInit {
   usuario: Usuario = new Usuario('', '');
 
-  constructor(private router: Router, private login: LoginService) {
+  constructor(private login: LoginService) {
     this.usuario.usuario = '';
     this.usuario.clave = '';
   }

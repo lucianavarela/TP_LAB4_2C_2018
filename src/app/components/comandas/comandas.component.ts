@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ComandaService } from '../../services/comanda/comanda.service';
+import { Comanda } from '../../classes/comanda';
 
 @Component({
   selector: 'app-comandas',
@@ -7,9 +9,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ComandasComponent implements OnInit {
 
-  constructor() { }
+  comandas: Array<Comanda>;
+  message: string = '';
 
-  ngOnInit() {
+  constructor(public comanda_service: ComandaService) {
+    this.comandas = new Array<Comanda>();
   }
 
+  ngOnInit() {
+    this.updateList();
+  }
+
+  updateList() {
+    this.comanda_service.traerComandas()
+      .then(data => {
+        this.comandas = Comanda.toComanda(data);
+      })
+      .catch(e => {
+        console.info(e);
+      });
+  }
+
+  triggerPopup(message: string) {
+    this.message = message;
+  }
 }

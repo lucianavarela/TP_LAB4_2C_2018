@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { EmpleadoService } from '../../services/empleado/empleado.service';
+import { Empleado } from '../../classes/empleado';
 
 @Component({
   selector: 'app-empleados',
@@ -7,9 +9,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EmpleadosComponent implements OnInit {
 
-  constructor() { }
+  empleados: Array<Empleado>;
+  message: string = '';
 
-  ngOnInit() {
+  constructor(public empleado_service: EmpleadoService) {
+    this.empleados = new Array<Empleado>();
   }
 
+  ngOnInit() {
+    this.updateList();
+  }
+
+  updateList() {
+    this.empleado_service.traerEmpleados()
+      .then(data => {
+        this.empleados = Empleado.toEmpleado(data);
+      })
+      .catch(e => {
+        console.info(e);
+      });
+  }
+
+  triggerPopup(message: string) {
+    this.message = message;
+  }
 }

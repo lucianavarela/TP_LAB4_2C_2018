@@ -2,7 +2,7 @@
   <div style="padding-top:6rem;" *ngIf="mesas.length > 0">
     <div class="columns is-multiline">
       <div *ngFor="let mesa of mesas" class="column is-narrow">
-        <app-box [mesa]="mesa"></app-box>
+        <app-box [tipo]="'mesa'" [objeto]="mesa"></app-box>
       </div>
     </div>
   </div>

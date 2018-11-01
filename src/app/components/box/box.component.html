@@ -1,19 +1,35 @@
-<div class="card">
+<div class="card" style="width: 15rem;">
   <div class="card-content">
     <div class="media">
       <div class="media-left">
         <figure class="image is-48x48">
-          <img src="assets/mesa.svg" alt="Vehiculo">
+          <img *ngIf="tipo!='pedido'" src="assets/{{tipo}}.svg" alt="Empleado">
+          <img *ngIf="tipo=='pedido'" src="assets/{{objeto.sector}}.svg" alt="Empleado">
         </figure>
       </div>
       <div class="media-content">
-        <p class="subtitle is-6" style="text-transform: capitalize">{{mesa.codigo}}</p>
+        <p *ngIf="tipo=='comanda'||tipo=='mesa'" class="title is-6">{{objeto.codigo}}</p>
+        <p *ngIf="tipo=='comanda'" class="subtitle is-6">{{objeto.nombreCliente}}</p>
+        <p *ngIf="tipo=='empleado'" class="title is-6">{{objeto.usuario}}</p>
+        <p *ngIf="tipo=='empleado'" class="subtitle is-6">{{objeto.sector}}</p>
+        <p *ngIf="tipo=='pedido'" class="title is-6">{{objeto.descripcion}}</p>
+        <p *ngIf="tipo=='pedido'" class="subtitle is-6">{{objeto.idEmpleado}}</p>
+        <p *ngIf="tipo=='encuesta'" class="title is-6">{{objeto.idComanda}}</p>
+        <p *ngIf="tipo=='encuesta'&&objeto.promedio>5" class="subtitle is-6">{{objeto.promedio}} puntos</p>
       </div>
     </div>
-    <div class="has-text-centered" style="margin-bottom:1rem">
-      <p>{{mesa.estado}}</p>
+    <div *ngIf="tipo!='encuesta'" class="has-text-small has-text-centered" style="margin-bottom:1rem">
+      <p>{{objeto.estado | titlecase}}</p>
     </div>
-    <footer class="card-footer">
+    <div *ngIf="tipo=='encuesta'" class="has-text-small" style="margin-bottom:1rem;">
+      <p>{{objeto.comentario | titlecase}}</p>
+    </div>
+
+    <progress *ngIf="tipo=='encuesta'&&objeto.promedio<4" class="progress is-danger" value="{{objeto.promedio}}" max="10">{{objeto.promedio}} puntos</progress>
+    <progress *ngIf="tipo=='encuesta'&&objeto.promedio>4&&objeto.promedio<8" class="progress is-info" value="{{objeto.promedio}}" max="10">{{objeto.promedio}} puntos</progress>
+    <progress *ngIf="tipo=='encuesta'&&objeto.promedio>8" class="progress is-success" value="{{objeto.promedio}}" max="10">{{objeto.promedio}} puntos</progress>
+    
+    <footer class="card-footer" *ngIf="tipo!='encuesta'">
       <a class="has-text-info card-footer-item" (click)="editar(mesa)">Editar</a>
       <a class="has-text-info card-footer-item" (click)="borrar(mesa)">Borrar</a>
     </footer>

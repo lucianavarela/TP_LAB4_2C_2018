@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { EncuestaService } from '../../services/encuesta/encuesta.service';
+import { Encuesta } from '../../classes/encuesta';
 
 @Component({
   selector: 'app-encuestas',
@@ -7,9 +9,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EncuestasComponent implements OnInit {
 
-  constructor() { }
+  encuestas: Array<Encuesta>;
+  message: string = '';
 
-  ngOnInit() {
+  constructor(public encuesta_service: EncuestaService) {
+    this.encuestas = new Array<Encuesta>();
   }
 
+  ngOnInit() {
+    this.updateList();
+  }
+
+  updateList() {
+    this.encuesta_service.traerEncuestas()
+      .then(data => {
+        this.encuestas = Encuesta.toEncuesta(data);
+      })
+      .catch(e => {
+        console.info(e);
+      });
+  }
+
+  triggerPopup(message: string) {
+    this.message = message;
+  }
 }

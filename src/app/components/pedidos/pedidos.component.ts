@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { PedidoService } from '../../services/pedido/pedido.service';
+import { Pedido } from '../../classes/pedido';
 
 @Component({
   selector: 'app-pedidos',
@@ -7,9 +9,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PedidosComponent implements OnInit {
 
-  constructor() { }
+  pedidos: Array<Pedido>;
+  message: string = '';
 
-  ngOnInit() {
+  constructor(public pedido_service: PedidoService) {
+    this.pedidos = new Array<Pedido>();
   }
 
+  ngOnInit() {
+    this.updateList();
+  }
+
+  updateList() {
+    this.pedido_service.traerPedidos()
+      .then(data => {
+        this.pedidos = Pedido.toPedido(data);
+      })
+      .catch(e => {
+        console.info(e);
+      });
+  }
+
+  triggerPopup(message: string) {
+    this.message = message;
+  }
 }

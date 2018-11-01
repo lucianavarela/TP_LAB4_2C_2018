@@ -1,3 +1,12 @@
-<p>
-  encuestas works!
-</p>
+<div class="container has-navbar-fixed-top">
+  <div style="padding-top:6rem;" *ngIf="encuestas.length > 0">
+    <div class="columns is-multiline">
+      <div *ngFor="let encuesta of encuestas" class="column is-narrow">
+        <app-box [tipo]="'encuesta'" [objeto]="encuesta"></app-box>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="message!=''" class="has-text-centered">
+    <p class="has-text-gray">{{message}}</p>
+  </div>
+</div>

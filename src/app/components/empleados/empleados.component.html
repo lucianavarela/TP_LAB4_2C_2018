@@ -1,3 +1,12 @@
-<p>
-  empleados works!
-</p>
+<div class="container has-navbar-fixed-top">
+  <div style="padding-top:6rem;" *ngIf="empleados.length > 0">
+    <div class="columns is-multiline">
+      <div *ngFor="let empleado of empleados" class="column is-narrow">
+        <app-box [tipo]="'empleado'" [objeto]="empleado"></app-box>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="message!=''" class="has-text-centered">
+    <p class="has-text-gray">{{message}}</p>
+  </div>
+</div>

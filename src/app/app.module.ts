@@ -3,9 +3,9 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { MainComponent } from './components/main/main.component';
 import { BoxComponent } from './components/box/box.component';
-import { MihttpService } from './services/mihttp.service';
-import { MesaService } from './services/mesa.service';
-import { LoginService } from './services/login.service';
+import { MihttpService } from './services/http/mihttp.service';
+import { MesaService } from './services/mesa/mesa.service';
+import { LoginService } from './services/login/login.service';
 import { HttpClientModule, HttpClient, HttpHandler } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes, Router } from '@angular/router';
@@ -20,10 +20,14 @@ import { EncuestasComponent } from './components/encuestas/encuestas.component';
 import { EmpleadosComponent } from './components/empleados/empleados.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { PopupComponent } from './components/popup/popup.component';
+import { RegisterComponent } from './components/register/register.component';
+import { LogsComponent } from './components/logs/logs.component';
+import { CaptchaComponent } from './components/captcha/captcha.component';
 
 const MiRuteo = [
   { path: '', component: MainComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
   { path: 'mesas', component: MesasComponent },
   { path: 'comandas', component: ComandasComponent },
   { path: 'pedidos', component: PedidosComponent },
@@ -45,7 +49,10 @@ const MiRuteo = [
     EncuestasComponent,
     EmpleadosComponent,
     AdminComponent,
-    PopupComponent
+    PopupComponent,
+    RegisterComponent,
+    LogsComponent,
+    CaptchaComponent
   ],
   imports: [
     BrowserModule,

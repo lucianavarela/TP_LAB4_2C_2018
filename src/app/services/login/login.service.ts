@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { MihttpService } from './mihttp.service';
+import { MihttpService } from '../http/mihttp.service';
 import { Subject } from 'rxjs';
-import { PopupComponent } from '../components/popup/popup.component';
+import { PopupComponent } from '../../components/popup/popup.component';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
@@ -15,7 +15,7 @@ export class LoginService {
   jwtHelper = new JwtHelperService();
   userTokenData: Subject<any> = new Subject<any>();
 
-  constructor(private router: Router, private http: MihttpService, public popup: PopupComponent) {
+  constructor(private http: MihttpService, public popup: PopupComponent) {
     this._token = localStorage.getItem('token');
     this.userTokenData.subscribe((value) => {
       this._token = value
@@ -24,8 +24,7 @@ export class LoginService {
 
   public isLogued() {
     try {
-      let rta = this.jwtHelper.isTokenExpired() || false;
-      return rta;
+      return (localStorage.getItem('token') && localStorage.getItem('token') != 'null');
     } catch (error) {
       return false;
     }
@@ -52,10 +51,9 @@ export class LoginService {
     this.http.post('login/', object)
       .then(data => {
         if (data.status == "OK") {
-          this.http.updateTokenHeaders(data.token);
-          localStorage.setItem('token', data.token);
-          this._token = localStorage.getItem('token');
+          this._token = data.token;
           this.userTokenData.next(!this._token);
+          localStorage.setItem('token', data.token);
           window.location.href = '/';
         } else {
           this.popup.show("error", data.mensaje);
@@ -69,7 +67,6 @@ export class LoginService {
   public logOut() {
     try {
       localStorage.setItem('token', null);
-      this.http.updateTokenHeaders('');
       window.location.href = '/';
     } catch (error) {
       return false;

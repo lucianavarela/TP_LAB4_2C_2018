@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Mesa } from '../../classes/mesa';
-import { MesaService } from '../../services/mesa.service';
+import { MesaService } from '../../services/mesa/mesa.service';
 
 @Component({
   selector: 'app-box',
@@ -8,13 +8,15 @@ import { MesaService } from '../../services/mesa.service';
   styleUrls: ['./box.component.css']
 })
 export class BoxComponent implements OnInit {
-  @Input() mesa: Mesa;
+  @Input() objeto: any;
+  @Input() tipo: string;
   @Output() callback: EventEmitter<any> = new EventEmitter();
   @Output() edit_form: EventEmitter<Mesa> = new EventEmitter();
 
   constructor(public mesaService: MesaService) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   editar (mesa: Mesa) {
     this.edit_form.emit(mesa);

@@ -1,3 +1,12 @@
-<p>
-  pedidos works!
-</p>
+<div class="container has-navbar-fixed-top" style="padding-top:6rem;">
+  <div *ngIf="pedidos.length > 0">
+    <div class="columns is-multiline">
+      <div *ngFor="let pedido of pedidos" class="column is-narrow">
+        <app-box [tipo]="'pedido'" [objeto]="pedido"></app-box>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="pedidos.length==0" class="has-text-centered">
+    <p class="has-text-gray">No hay pedidos</p>
+  </div>
+</div>

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MesaService } from '../../services/mesa.service';
+import { MesaService } from '../../services/mesa/mesa.service';
 import { Mesa } from '../../classes/mesa';
 
 @Component({

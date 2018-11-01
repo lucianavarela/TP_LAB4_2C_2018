@@ -9,3 +9,12 @@
 #signout {
     display: none;
 }
+
+.navbar-burger {
+    height: 5.6rem;
+    width: 5.6rem;
+}
+
+.is-fixed-top {
+    box-shadow: 0 1px 5px #888888;
+}

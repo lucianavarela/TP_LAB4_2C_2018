@@ -1,0 +1,74 @@
+<div class="container" style="margin-top:3rem;">
+  <div class="columns is-centered">
+    <div class="column is-one-third">
+
+      <form (ngSubmit)="register()">
+        <div class="field">
+          <label for="inputUsuario" class="label">Usuario</label>
+          <div class="control">
+            <input type="usuario" [(ngModel)]="usuario.usuario" name='usuario' required class="input" id="inputUsuario"
+              placeholder="Usuario">
+          </div>
+        </div>
+
+        <div class="columns">
+          <div class="column">
+            <div class="field">
+              <label for="inputPassword" class="label">Contraseña</label>
+              <div class="control">
+                <input type="password" [(ngModel)]="usuario.clave" name="clave" required class="input" id="inputPassword"
+                  placeholder="Contraseña">
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            <div class="field">
+              <label for="inputPassword" class="label">Repeti la contraseña</label>
+              <div class="control">
+                <input type="password" [(ngModel)]="usuario.clave2" name="clave" required class="input" id="inputPassword2"
+                  placeholder="Contraseña">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="columns">
+          <div class="column">
+            <div class="field">
+              <label for="sector" class="label">Sector</label>
+              <div class="control">
+                <div class="select">
+                  <select type="password" [(ngModel)]="usuario.sector" name="sector" required id="sector" placeholder="Repeti la contraseña">
+                    <option value="0">Seleccione el sector</option>
+                    <option value="mozo">Mozo</option>
+                    <option value="cocina">Cocina</option>
+                    <option value="cerveza">Cerveza</option>
+                    <option value="barra">Barra</option>
+                    <option value="candy">Candy Bar</option>
+                    <option value="management">Management</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            <div class="field">
+              <label for="sector" class="label">Sueldo</label>
+              <div class="control">
+                <input type="number" [(ngModel)]="usuario.sueldo" name="sueldo" required class="input" id="sueldo">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <app-captcha (callback)="allowSubmit()"></app-captcha>
+
+        <div class="field" style="margin-top:2rem">
+          <div class="control has-text-centered">
+            <button id="submitBtn" type="submit" class="button is-info" disabled>Registrar Usuario</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
