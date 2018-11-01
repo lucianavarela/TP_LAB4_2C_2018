@@ -18,17 +18,36 @@
         <p *ngIf="tipo=='encuesta'&&objeto.promedio>5" class="subtitle is-6">{{objeto.promedio}} puntos</p>
       </div>
     </div>
-    <div *ngIf="tipo!='encuesta'" class="has-text-small has-text-centered" style="margin-bottom:1rem">
+
+
+    <div *ngIf="usuario.sector=='management'&&tipo=='empleado'" class="has-text-small has-text-centered status">
+      <div class="columns">
+        <div class="column">
+          <p>{{objeto.estado | titlecase}}</p>
+        </div>
+        <div class="column">
+          <p>${{objeto.sueldo}}</p>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="tipo!='encuesta'&&(usuario.sector!='management'&&tipo=='empleado')" class="has-text-small has-text-centered status">
       <p>{{objeto.estado | titlecase}}</p>
     </div>
-    <div *ngIf="tipo=='encuesta'" class="has-text-small" style="margin-bottom:1rem;">
+    <div *ngIf="tipo=='encuesta'" class="has-text-small status">
       <p>{{objeto.comentario | titlecase}}</p>
     </div>
 
-    <progress *ngIf="tipo=='encuesta'&&objeto.promedio<4" class="progress is-danger" value="{{objeto.promedio}}" max="10">{{objeto.promedio}} puntos</progress>
-    <progress *ngIf="tipo=='encuesta'&&objeto.promedio>4&&objeto.promedio<8" class="progress is-info" value="{{objeto.promedio}}" max="10">{{objeto.promedio}} puntos</progress>
-    <progress *ngIf="tipo=='encuesta'&&objeto.promedio>8" class="progress is-success" value="{{objeto.promedio}}" max="10">{{objeto.promedio}} puntos</progress>
-    
+    <progress *ngIf="tipo=='encuesta'&&objeto.promedio<4" class="progress is-danger" value="{{objeto.promedio}}" max="10">
+      {{objeto.promedio}} puntos
+    </progress>
+    <progress *ngIf="tipo=='encuesta'&&objeto.promedio>4&&objeto.promedio<8" class="progress is-info" value="{{objeto.promedio}}" max="10">
+      {{objeto.promedio}} puntos
+    </progress>
+    <progress *ngIf="tipo=='encuesta'&&objeto.promedio>8" class="progress is-success" value="{{objeto.promedio}}" max="10">
+      {{objeto.promedio}} puntos
+    </progress>
+
     <footer class="card-footer" *ngIf="tipo!='encuesta'">
       <a class="has-text-info card-footer-item" (click)="editar(mesa)">Editar</a>
       <a class="has-text-info card-footer-item" (click)="borrar(mesa)">Borrar</a>

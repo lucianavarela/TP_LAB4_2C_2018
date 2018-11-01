@@ -2,21 +2,32 @@
   <div class="columns is-centered">
     <div class="column is-one-third">
 
-      <form (ngSubmit)="enviar()" class="form-horizontal col-sm-8">
+      <form (ngSubmit)="enviar()">
+
+        <div class="columns is-multiline">
+          <div *ngFor="let sector of sectores" class="column">
+            <div class="field">
+              <div class="control has-text-centered">
+                <button (click)="submit(sector)" type="submit" class="button is-light">{{sector.sector | titlecase}}</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div class="field">
           <label for="inputUsuario" class="label">Usuario</label>
           <div class="control">
             <input type="usuario" [(ngModel)]="usuario.usuario" name='usuario' required class="input" id="inputUsuario"
-            placeholder="Usuario">
+              placeholder="Usuario">
           </div>
         </div>
         <div class="field">
           <label for="inputPassword" class="label">Password</label>
-          
+
           <div class="control">
             <input type="password" [(ngModel)]="usuario.clave" name="clave" required class="input" id="inputPassword"
-            placeholder="Password">
-            
+              placeholder="Password">
+
           </div>
         </div>
         <div class="field">

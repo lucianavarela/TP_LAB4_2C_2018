@@ -11,6 +11,7 @@ export class CaptchaComponent implements OnInit {
   public numbers: Array<string>;
   public numbers_pushed: Array<string>;
   public is_valid: boolean = false;
+  public orden: string = '';
 
   constructor() {
     this.numbers = ['1', '2', '3', '4', '5'];
@@ -19,6 +20,8 @@ export class CaptchaComponent implements OnInit {
 
   ngOnInit() {
     this.numbers = this.shuffle(this.numbers);
+    let random = Math.floor((Math.random() * 2) + 1);
+    this.orden = random == 1? 'ascendente' : 'descendente';
   }
 
   number_push(number: string) {
@@ -27,9 +30,16 @@ export class CaptchaComponent implements OnInit {
     if (this.numbers.length == this.numbers_pushed.length) {
       let all_are_correct = true;
       for (let i=0; i<this.numbers.length; i++) {
-        if ((i+1).toString() != this.numbers_pushed[i]) {
-          all_are_correct = false;
-          break;
+        if (this.orden == 'ascendente') {
+          if ((i+1).toString() != this.numbers_pushed[i]) {
+            all_are_correct = false;
+            break;
+          }
+        } else {
+          if ((this.numbers.length-i).toString() != this.numbers_pushed[i]) {
+            all_are_correct = false;
+            break;
+          }
         }
       }
       if (all_are_correct) {

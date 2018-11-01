@@ -1,4 +1,4 @@
-<p *ngIf="!is_valid" class="field">Haga click en los numeros en orden ascendente...</p>
+<p *ngIf="!is_valid" class="field has-text-small">Haga click en los numeros en orden {{orden}}...</p>
 <div *ngIf="!is_valid" class="columns">
   <div *ngFor="let number of numbers" class="column">
     <a id="{{number}}" class="captcha_number is-centered" (click)="number_push(number)">
