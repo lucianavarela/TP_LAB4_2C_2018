@@ -20,7 +20,6 @@ export class MihttpService {
     if (token != '') {
       httpOptions.headers = httpOptions.headers.append('Authorization', token);
     }
-    console.log(httpOptions);
   }
 
   public get(url: string): any {

@@ -53,7 +53,7 @@ export class LoginService {
         if (data.status == "OK") {
           this._token = data.token;
           localStorage.setItem('token', data.token);
-          //window.location.href = '/';
+          window.location.href = '/';
         } else {
           this.popup.show("error", data.mensaje);
         }
