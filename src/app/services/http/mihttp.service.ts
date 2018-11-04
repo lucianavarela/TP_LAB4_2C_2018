@@ -8,7 +8,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 
 export class MihttpService {
   public api: string = "https://comandaback.herokuapp.com/";
-  public httpOptions: any;
+  public httpOptions: any = {};
 
   constructor(public http: HttpClient) {
     let token = localStorage.getItem('token');
@@ -36,7 +36,6 @@ export class MihttpService {
   }
 
   public post(url, data: Object) {
-    console.log('3', url, data, this.api + url);
     return this.http.post(this.api + url, data)
       .toPromise()
       .then(this.extractData)
