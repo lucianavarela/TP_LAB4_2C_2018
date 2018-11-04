@@ -29,28 +29,28 @@ export class MihttpService {
   }
 
   public get(url: string): any {
-    return this.http.get(this.api + url, this.httpOptions)
+    return this.http.get(this.api + url, this.httpOptions.headers)
       .toPromise()
       .then(this.extractData)
       .catch(this.handleError);
   }
 
   public post(url, data: Object) {
-    return this.http.post(this.api + url, data)
+    return this.http.post(this.api + url, data, this.httpOptions.headers)
       .toPromise()
       .then(this.extractData)
       .catch(this.handleError);
   }
 
   public delete(url: string) {
-    return this.http.delete(url, this.httpOptions)
+    return this.http.delete(url, this.httpOptions.headers)
       .toPromise()
       .then(this.extractData)
       .catch(this.handleError);
   }
 
   public put(url: string, objeto: any) {
-    return this.http.put(url, objeto, this.httpOptions)
+    return this.http.put(url, objeto, this.httpOptions.headers)
       .toPromise()
       .then(this.extractData)
       .catch(this.handleError);
