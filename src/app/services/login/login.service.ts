@@ -51,7 +51,7 @@ export class LoginService {
     console.log('2');
     this.http.post('login/', object)
       .then(data => {
-        console.log(data);
+        console.log(typeof(data));
         if (data.status == "OK") {
           this._token = data.token;
           localStorage.setItem('token', data.token);
