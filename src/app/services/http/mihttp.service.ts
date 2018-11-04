@@ -26,7 +26,6 @@ export class MihttpService {
         })
       }
     }
-    console.log(this.httpOptions);
   }
 
   public get(url: string): any {
