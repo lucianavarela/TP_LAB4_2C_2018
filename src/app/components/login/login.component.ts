@@ -39,7 +39,6 @@ export class LoginComponent implements OnInit {
   }
 
   enviar() {
-    console.log('1');
     this.login.logIn({
       usuario: this.usuario.usuario,
       clave: this.usuario.clave
