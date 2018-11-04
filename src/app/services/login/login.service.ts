@@ -54,7 +54,6 @@ export class LoginService {
         console.log(data);
         if (data.status == "OK") {
           this._token = data.token;
-          this.userTokenData.next(!this._token);
           localStorage.setItem('token', data.token);
           //window.location.href = '/';
         } else {
