@@ -48,13 +48,14 @@ export class LoginService {
   }
 
   public logIn(object: Object) {
+    console.log('2');
     this.http.post('login/', object)
       .then(data => {
         if (data.status == "OK") {
           this._token = data.token;
           this.userTokenData.next(!this._token);
           localStorage.setItem('token', data.token);
-          window.location.href = '/';
+          //window.location.href = '/';
         } else {
           this.popup.show("error", data.mensaje);
         }
