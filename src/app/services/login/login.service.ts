@@ -51,6 +51,7 @@ export class LoginService {
     console.log('2');
     this.http.post('login/', object)
       .then(data => {
+        console.log(data);
         if (data.status == "OK") {
           this._token = data.token;
           this.userTokenData.next(!this._token);

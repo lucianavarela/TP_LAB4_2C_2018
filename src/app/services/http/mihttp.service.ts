@@ -36,7 +36,7 @@ export class MihttpService {
   }
 
   public post(url, data: Object) {
-    console.log('3');
+    console.log('3', url, data, this.api + url, this.httpOptions);
     return this.http.post(this.api + url, data, this.httpOptions)
       .toPromise()
       .then(this.extractData)
