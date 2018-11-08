@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { LoginService } from '../../services/login/login.service';
-import { stringify } from 'querystring';
 
 export class Usuario {
   public usuario: string = '';

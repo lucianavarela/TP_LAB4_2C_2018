@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { EmpleadoService } from '../../services/empleado/empleado.service';
 import { Empleado } from '../../classes/empleado';
+import { ExportToCSV } from '@molteni/export-csv';
 
 @Component({
   selector: 'app-empleados',
@@ -32,5 +33,10 @@ export class EmpleadosComponent implements OnInit {
 
   triggerPopup(message: string) {
     this.message = message;
+  }
+
+  export() {
+    var exporter = new ExportToCSV();
+    exporter.exportColumnsToCSV(this.empleados, "dump-empleados", ["id", "usuario", "sector", "estado", "sueldo"]);
   }
 }

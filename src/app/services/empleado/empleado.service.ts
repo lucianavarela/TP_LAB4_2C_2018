@@ -16,6 +16,10 @@ export class EmpleadoService {
     return this.miHttp.get(this.ruta);
   }
 
+  public traerReportes() {
+    return this.miHttp.get(this.ruta + 'metricas/');
+  }
+
   public borrarEmpleado(id) {
     return this.miHttp.delete(this.ruta + id);
   }

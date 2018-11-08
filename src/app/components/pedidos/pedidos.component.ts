@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { PedidoService } from '../../services/pedido/pedido.service';
 import { Pedido } from '../../classes/pedido';
+import { ExportToCSV } from '@molteni/export-csv';
 
 @Component({
   selector: 'app-pedidos',
@@ -32,5 +33,10 @@ export class PedidosComponent implements OnInit {
 
   triggerPopup(message: string) {
     this.message = message;
+  }
+
+  export() {
+    var exporter = new ExportToCSV();
+    exporter.exportAllToCSV(this.pedidos, "dump-pedidos");
   }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../../services/login/login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
@@ -11,7 +12,7 @@ export class SidebarComponent implements OnInit {
   is_logged: boolean = false;
   usuario: any;
 
-  constructor(public auth: LoginService) {
+  constructor(private router: Router, public auth: LoginService) {
     if (this.auth.getToken()) this.usuario = this.auth.getToken().data;
     this.auth.userTokenData.subscribe(value => {
       this.usuario = value;
@@ -20,6 +21,9 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit() {
     this.is_logged = this.auth.isLogued();
+    if (!this.is_logged) {
+      this.router.navigate(['/']);
+    }
   }
 
   logout() {

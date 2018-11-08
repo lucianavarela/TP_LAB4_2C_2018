@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MesaService } from '../../services/mesa/mesa.service';
 import { Mesa } from '../../classes/mesa';
+import { ExportToCSV } from '@molteni/export-csv';
 
 @Component({
   selector: 'app-mesas',
@@ -32,5 +33,10 @@ export class MesasComponent implements OnInit {
 
   triggerPopup(message: string) {
     this.message = message;
+  }
+
+  export() {
+    var exporter = new ExportToCSV();
+    exporter.exportAllToCSV(this.mesas, "dump-mesas");
   }
 }

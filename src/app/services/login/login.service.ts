@@ -17,14 +17,19 @@ export class LoginService {
 
   constructor(private http: MihttpService, public popup: PopupComponent) {
     this._token = localStorage.getItem('token');
-    this.userTokenData.subscribe((value) => {
-      this._token = value
-    });
   }
 
   public isLogued() {
     try {
-      return (localStorage.getItem('token') && localStorage.getItem('token') != 'null');
+      return (localStorage.getItem('token') && localStorage.getItem('token') != 'null' && this.isExpired());
+    } catch (error) {
+      return false;
+    }
+  }
+
+  public isExpired() {
+    try {
+      return (this.getExpirationDate().getTime() > new Date().getTime());
     } catch (error) {
       return false;
     }

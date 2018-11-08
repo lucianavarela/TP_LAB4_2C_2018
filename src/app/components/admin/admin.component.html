@@ -1,3 +1,205 @@
-<p>
-  admin works!
-</p>
+<div id="reports-content" class="container has-navbar-fixed-top" style="background-color:#e0e0e0">
+  <div style="padding:2rem;" *ngIf="is_loaded">
+    <div id="w" class="tile is-ancestor">
+      <div class="tile is-vertical">
+        <div class="tile is-12 is-parent">
+          <div class="tile is-child box">
+            <nav class="level">
+              <div *ngFor="let log of reporte_1.content" class="level-item has-text-centered">
+                <div>
+                  <p class="heading">{{log.sector}}</p>
+                  <p class="subtitle">{{log.cantidad}}</p>
+                </div>
+              </div>
+            </nav>
+          </div>
+        </div>
+        <div class="tile">
+          <div class="tile is-4 is-parent reportes-mesas">
+            <div class="tile is-child box">
+              <p class="subtitle">MESAS</p>
+              <label class="label">Uso</label>
+              <div class="box">
+                <div class="columns">
+                  <div class="column">
+                    <span class="icon">
+                      <i class="fa fa-thumbs-o-up"></i>
+                    </span>
+                    <span>{{reporte_6.content.mesa}}</span>
+                    <span class="pedido-cantidad">{{reporte_6.content.cantidad}}</span>
+                  </div>
+                  <div class="column">
+                    <span class="icon">
+                      <i class="fa fa-thumbs-o-down"></i>
+                    </span>
+                    <span>{{reporte_7.content.mesa}}</span>
+                    <span class="pedido-cantidad">{{reporte_7.content.cantidad}}</span>
+                  </div>
+                </div>
+              </div>
+              <label class="label">Recaudación</label>
+              <div class="box">
+                <div class="columns">
+                  <div class="column">
+                    <span class="icon">
+                      <i class="fa fa-thumbs-o-up"></i>
+                    </span>
+                    <span>{{reporte_8.content.mesa}}</span>
+                    <span class="importe">${{reporte_8.content.importe}}</span>
+                  </div>
+                  <div class="column">
+                    <span class="icon">
+                      <i class="fa fa-thumbs-o-down"></i>
+                    </span>
+                    <span>{{reporte_9.content.mesa}}</span>
+                    <span class="importe">${{reporte_9.content.importe}}</span>
+                  </div>
+                </div>
+              </div>
+              <label class="label">Importe</label>
+              <div class="box">
+                <div class="columns">
+                  <div class="column">
+                    <span class="icon">
+                      <i class="fa fa-thumbs-o-up"></i>
+                    </span>
+                    <span>{{reporte_10.content.mesa}}</span>
+                    <span class="importe">${{reporte_10.content.importe}}</span>
+                  </div>
+                  <div class="column">
+                    <span class="icon">
+                      <i class="fa fa-thumbs-o-down"></i>
+                    </span>
+                    <span>{{reporte_11.content.mesa}}</span>
+                    <span class="importe">${{reporte_11.content.importe}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tile is-vertical">
+            <div class="tile is-parent">
+              <div class="tile is-child box">
+                <p class="subtitle">PEDIDOS</p>
+                <div class="columns">
+                  <div class="column">
+                    <label class="label">Más pedido</label>
+                    <div class="box pedido">
+                      <span>{{reporte_2.content.pedido}}</span>
+                      <span class="pedido-cantidad">{{reporte_2.content.cantidad}}</span>
+                    </div>
+                  </div>
+                  <div class="column">
+                    <label class="label">Menos pedido</label>
+                    <div class="box pedido">
+                      <span>{{reporte_3.content.pedido}}</span>
+                      <span class="pedido-cantidad">{{reporte_3.content.cantidad}}</span>
+                    </div>
+                  </div>
+                  <div class="column">
+                    <div class="field">
+                      <div class="control has-text-centered">
+                        <button type="submit" class="button is-info">Demorados</button>
+                      </div>
+                    </div>
+                    <div class="field">
+                      <div class="control has-text-centered">
+                        <button type="submit" class="button is-info">Cancelados</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tile is-parent">
+              <div class="tile is-child box" style="margin-right: 2rem!important;">
+                <div class="columns">
+                  <div class="column">
+                    <p class="subtitle">RECAUDACION</p>
+                    <div class="field">
+                      <label class="label" for="from-date">Desde</label>
+                      <div class="control has-icons-left">
+                        <span class="icon">
+                          <i class="fa fa-calendar"></i>
+                        </span>
+                        <input id="from-date" class="input" type="date" [(ngModel)]="from_date" value="">
+                      </div>
+                    </div>
+                    <div class="field">
+                      <div class="control has-text-centered is-expanded">
+                        <button type="submit" class="button is-info is-fullwidth">Calcular</button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="column">
+                    <div class="columns is-marginless">
+                      <div class="column is-narrow" style="padding-left:0; padding-bottom: 0">
+                        <label for="sector" class="label">Mesa</label>
+                      </div>
+                      <div class="column" style="padding-bottom: 0">
+                        <div class="field">
+                          <div class="control has-text-centered">
+                            <div class="select">
+                              <select [(ngModel)]="mesa_recaudacion" name="sector" required id="mesa-recaudacion">
+                                <option *ngFor="let mesa of mesas">{{mesa.codigo}}</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="field">
+                      <label class="label" for="from-date">Hasta</label>
+                      <div class="control has-icons-left">
+                        <span class="icon">
+                          <i class="fa fa-calendar"></i>
+                        </span>
+                        <input id="to-date" class="input" type="date" [(ngModel)]="to_date" value="">
+                      </div>
+                    </div>
+                    <div class="field">
+                      <div class="control has-icons-left">
+                        <span class="icon" style="color: #7a7a7a;">
+                          <i class="fa fa-usd"></i>
+                        </span>
+                        <input id="recaudacion" class="input" value="{{reporte_12.content.importe}}" disabled>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="tile is-child box">
+                <p class="subtitle">FEEDBACK</p>
+                <div class="field">
+                  <div class="control is-expanded">
+                    <button type="submit" class="button is-info is-fullwidth">Mejores</button>
+                  </div>
+                </div>
+                <div class="field">
+                  <div class="control is-expanded">
+                    <button type="submit" class="button is-info is-fullwidth">Peores</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="message!=''" class="has-text-centered">
+    <p class="has-text-gray">{{message}}</p>
+  </div>
+</div>
+
+<div class="floating-menu">
+  <div class="field">
+    <div class="control">
+      <button type="submit" class="button is-large is-info" (click)="downloadReports()">
+        <span class="icon is-large">
+          <i class="fa fa-lg fa-download"></i>
+        </span>
+      </button>
+    </div>
+  </div>
+</div>

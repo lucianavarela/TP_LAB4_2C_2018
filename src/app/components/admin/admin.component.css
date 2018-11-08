@@ -1,0 +1,25 @@
+.pedido {
+    position: relative;
+}
+
+.pedido-cantidad {
+    text-align: center;
+    width: 1.5rem;
+    background-color: #f7c9c3;
+    border-radius: 50%;
+    position: absolute;
+    right: 1rem;
+}
+
+.importe {
+    background-color: #b5b5b5;
+    border-radius: 5px;
+    width: 4rem;
+    position: absolute;
+    text-align: center;
+    right: 0;
+}
+
+.reportes-mesas .column {
+    position: relative;
+}

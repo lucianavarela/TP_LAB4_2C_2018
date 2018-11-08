@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { EncuestaService } from '../../services/encuesta/encuesta.service';
 import { Encuesta } from '../../classes/encuesta';
+import { ExportToCSV } from '@molteni/export-csv';
 
 @Component({
   selector: 'app-encuestas',
@@ -32,5 +33,10 @@ export class EncuestasComponent implements OnInit {
 
   triggerPopup(message: string) {
     this.message = message;
+  }
+
+  export() {
+    var exporter = new ExportToCSV();
+    exporter.exportAllToCSV(this.encuestas, "dump-encuestas");
   }
 }

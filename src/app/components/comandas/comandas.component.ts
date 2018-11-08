@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ComandaService } from '../../services/comanda/comanda.service';
 import { Comanda } from '../../classes/comanda';
+import { ExportToCSV } from '@molteni/export-csv';
 
 @Component({
   selector: 'app-comandas',
@@ -32,5 +33,10 @@ export class ComandasComponent implements OnInit {
 
   triggerPopup(message: string) {
     this.message = message;
+  }
+
+  export() {
+    var exporter = new ExportToCSV();
+    exporter.exportAllToCSV(this.comandas, "dump-comandas");
   }
 }
