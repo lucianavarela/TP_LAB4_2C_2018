@@ -23,6 +23,7 @@ import { PopupComponent } from './components/popup/popup.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LogsComponent } from './components/logs/logs.component';
 import { CaptchaComponent } from './components/captcha/captcha.component';
+import { ModalListComponent } from './components/modal-list/modal-list.component';
 
 const MiRuteo = [
   { path: '', component: MainComponent },
@@ -52,7 +53,8 @@ const MiRuteo = [
     PopupComponent,
     RegisterComponent,
     LogsComponent,
-    CaptchaComponent
+    CaptchaComponent,
+    ModalListComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +65,7 @@ const MiRuteo = [
     BrowserModule,
     RouterModule.forRoot(MiRuteo)
   ],
-  providers: [MihttpService, MesaService, LoginService, PopupComponent],
+  providers: [MihttpService, MesaService, LoginService, PopupComponent, ModalListComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

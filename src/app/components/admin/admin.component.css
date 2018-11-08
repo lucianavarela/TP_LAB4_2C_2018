@@ -23,3 +23,8 @@
 .reportes-mesas .column {
     position: relative;
 }
+
+.is-grayish {
+    background-color: #a6a6a6;
+    color: white;
+}

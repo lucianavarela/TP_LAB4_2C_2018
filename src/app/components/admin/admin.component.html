@@ -99,12 +99,12 @@
                   <div class="column">
                     <div class="field">
                       <div class="control has-text-centered">
-                        <button type="submit" class="button is-info">Demorados</button>
+                        <button type="submit" class="button is-grayish" (click)="showTable(reporte_4.content)">Demorados</button>
                       </div>
                     </div>
                     <div class="field">
                       <div class="control has-text-centered">
-                        <button type="submit" class="button is-info">Cancelados</button>
+                        <button type="submit" class="button is-grayish" (click)="showTable(reporte_5.content)">Cancelados</button>
                       </div>
                     </div>
                   </div>
@@ -172,12 +172,12 @@
                 <p class="subtitle">FEEDBACK</p>
                 <div class="field">
                   <div class="control is-expanded">
-                    <button type="submit" class="button is-info is-fullwidth">Mejores</button>
+                    <button type="submit" class="button is-grayish is-fullwidth" (click)="showTable(reporte_13.content)">Mejores</button>
                   </div>
                 </div>
                 <div class="field">
                   <div class="control is-expanded">
-                    <button type="submit" class="button is-info is-fullwidth">Peores</button>
+                    <button type="submit" class="button is-grayish is-fullwidth" (click)="showTable(reporte_14.content)">Peores</button>
                   </div>
                 </div>
               </div>
@@ -186,9 +186,6 @@
         </div>
       </div>
     </div>
-  </div>
-  <div *ngIf="message!=''" class="has-text-centered">
-    <p class="has-text-gray">{{message}}</p>
   </div>
 </div>
 
@@ -203,3 +200,5 @@
     </div>
   </div>
 </div>
+
+<app-modal-list (callback)="closeModal()" [showModal]="showModal" [tipo]="type" [list]="list"></app-modal-list>

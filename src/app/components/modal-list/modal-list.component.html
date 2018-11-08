@@ -1,0 +1,20 @@
+<div class="modal" [ngClass]="{'is-active':showModal}" id="modalContent">
+  <div class="modal-background" (click)="closeModal()"></div>
+  <div class="modal-content">
+    <div class="box">
+      <table class="table">
+        <thead>
+          <tr>
+            <th *ngFor="let key of keys">{{key}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let row of content">
+            <td *ngFor="let field of row">{{field}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <button class="modal-close is-large" aria-label="close" (click)="closeModal()"></button>
+</div>

@@ -5,6 +5,7 @@ import { MesaService } from 'src/app/services/mesa/mesa.service';
 import { Mesa } from 'src/app/classes/mesa';
 import * as jspdf from 'jspdf';
 import html2canvas from 'html2canvas';
+import { ModalListComponent } from '../modal-list/modal-list.component';
 
 @Component({
   selector: 'app-admin',
@@ -12,7 +13,10 @@ import html2canvas from 'html2canvas';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
+  public type: string;
+  public list: Array<any>;
   message: string = '';
+  showModal: boolean = false;
   mesas: Array<Mesa>;
   is_loaded: boolean = false;
   mesa_recaudacion: string = '';
@@ -149,6 +153,16 @@ export class AdminComponent implements OnInit {
       .catch(e => {
         console.info(e);
       });
+  }
+
+  showTable(content:Array<any>) {
+    this.type = 'list';
+    this.list = content;
+    this.showModal = true;
+  }
+
+  closeModal() {
+    this.showModal = false;
   }
 
   downloadReports() {
