@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { EmpleadoService } from 'src/app/services/empleado/empleado.service';
-import flatpickr from 'flatpickr';
 import { MesaService } from 'src/app/services/mesa/mesa.service';
 import { Mesa } from 'src/app/classes/mesa';
 import * as jspdf from 'jspdf';
 import html2canvas from 'html2canvas';
-import { ModalListComponent } from '../modal-list/modal-list.component';
 
 @Component({
   selector: 'app-admin',

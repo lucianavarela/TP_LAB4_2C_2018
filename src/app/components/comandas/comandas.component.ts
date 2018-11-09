@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ComandaService } from '../../services/comanda/comanda.service';
 import { Comanda } from '../../classes/comanda';
-import { ExportToCSV } from '@molteni/export-csv';
+import { Angular5Csv } from 'angular5-csv/Angular5-csv';
 
 @Component({
   selector: 'app-comandas',
@@ -36,7 +36,11 @@ export class ComandasComponent implements OnInit {
   }
 
   export() {
-    var exporter = new ExportToCSV();
-    exporter.exportAllToCSV(this.comandas, "dump-comandas");
+    if (this.comandas.length > 0) {
+      var options = {
+        headers: Object.keys(this.comandas[0])
+      };
+      new Angular5Csv(this.comandas, 'dump-empleados', options);
+    }
   }
 }

@@ -27,6 +27,7 @@
     "@auth0/angular-jwt": "^2.0.0",
     "@molteni/export-csv": "0.0.2",
     "angular-font-awesome": "^3.1.2",
+    "angular5-csv": "^0.2.10",
     "body-parser": "^1.18.3",
     "bulma": "^0.7.1",
     "core-js": "^2.5.4",

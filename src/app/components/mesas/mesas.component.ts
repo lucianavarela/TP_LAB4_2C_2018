@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MesaService } from '../../services/mesa/mesa.service';
 import { Mesa } from '../../classes/mesa';
-import { ExportToCSV } from '@molteni/export-csv';
+import { Angular5Csv } from 'angular5-csv/Angular5-csv';
 
 @Component({
   selector: 'app-mesas',
@@ -36,7 +36,11 @@ export class MesasComponent implements OnInit {
   }
 
   export() {
-    var exporter = new ExportToCSV();
-    exporter.exportAllToCSV(this.mesas, "dump-mesas");
+    if (this.mesas.length > 0) {
+      var options = {
+        headers: Object.keys(this.mesas[0])
+      };
+      new Angular5Csv(this.mesas, 'dump-empleados', options);
+    }
   }
 }

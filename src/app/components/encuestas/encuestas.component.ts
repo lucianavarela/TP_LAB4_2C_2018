@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { EncuestaService } from '../../services/encuesta/encuesta.service';
 import { Encuesta } from '../../classes/encuesta';
-import { ExportToCSV } from '@molteni/export-csv';
+import { Angular5Csv } from 'angular5-csv/Angular5-csv';
 
 @Component({
   selector: 'app-encuestas',
@@ -36,7 +36,11 @@ export class EncuestasComponent implements OnInit {
   }
 
   export() {
-    var exporter = new ExportToCSV();
-    exporter.exportAllToCSV(this.encuestas, "dump-encuestas");
+    if (this.encuestas.length > 0) {
+      var options = {
+        headers: Object.keys(this.encuestas[0])
+      };
+      new Angular5Csv(this.encuestas, 'dump-empleados', options);
+    }
   }
 }

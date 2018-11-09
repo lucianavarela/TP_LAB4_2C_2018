@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { EmpleadoService } from '../../services/empleado/empleado.service';
 import { Empleado } from '../../classes/empleado';
-import { ExportToCSV } from '@molteni/export-csv';
+import { Angular5Csv } from 'angular5-csv/Angular5-csv';
 
 @Component({
   selector: 'app-empleados',
@@ -36,7 +36,11 @@ export class EmpleadosComponent implements OnInit {
   }
 
   export() {
-    var exporter = new ExportToCSV();
-    exporter.exportColumnsToCSV(this.empleados, "dump-empleados", ["id", "usuario", "sector", "estado", "sueldo"]);
+    if (this.empleados.length > 0) {
+      var options = {
+        headers: Object.keys(this.empleados[0])
+      };
+      new Angular5Csv(this.empleados, 'dump-empleados', options);
+    }
   }
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { PedidoService } from '../../services/pedido/pedido.service';
 import { Pedido } from '../../classes/pedido';
-import { ExportToCSV } from '@molteni/export-csv';
+import { Angular5Csv } from 'angular5-csv/Angular5-csv';
 
 @Component({
   selector: 'app-pedidos',
@@ -36,7 +36,11 @@ export class PedidosComponent implements OnInit {
   }
 
   export() {
-    var exporter = new ExportToCSV();
-    exporter.exportAllToCSV(this.pedidos, "dump-pedidos");
+    if (this.pedidos.length > 0) {
+      var options = {
+        headers: Object.keys(this.pedidos[0])
+      };
+      new Angular5Csv(this.pedidos, 'dump-empleados', options);
+    }
   }
 }
