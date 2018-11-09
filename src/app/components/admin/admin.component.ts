@@ -164,12 +164,9 @@ export class AdminComponent implements OnInit {
   }
 
   downloadReports() {
-    let today = new Date();
-    let dd = today.getDate();
-    let mm = today.getMonth() + 1;
-    let yyyy = today.getFullYear();
-    let today_date = mm.toString() + '-' + dd.toString() + '-' + yyyy.toString();
     let data = document.getElementById('reports-content');
+    let today = new Date();
+    let today_date = (today.getMonth() + 1).toString() + '-' + (today.getDate()).toString() + '-' + (today.getFullYear()).toString();
     html2canvas(data).then(canvas => {
       let imgWidth = 300;
       let imgHeight = canvas.height * imgWidth / canvas.width;
