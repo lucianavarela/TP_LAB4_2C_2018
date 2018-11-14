@@ -8,12 +8,3 @@ import { Component } from '@angular/core';
   title = 'micomanda';
 }
 
-@Component({
-  selector: 'recaptcha',
-  template: `<re-captcha (resolved)="resolved($event)" siteKey="6Ld12HoUAAAAAPjwxTsCRO41efWc9BfNYT-7oA63"></re-captcha>`,
-}) export class MyApp {
-  resolved(captchaResponse: string) {
-    console.log(`Resolved captcha with response ${captchaResponse}:`);
-  }
-}
-
