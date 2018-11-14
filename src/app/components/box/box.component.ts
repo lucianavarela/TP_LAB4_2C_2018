@@ -11,10 +11,11 @@ import { LoginService } from 'src/app/services/login/login.service';
 export class BoxComponent implements OnInit {
   @Input() objeto: any;
   @Input() tipo: string;
-  @Output() callback: EventEmitter<any> = new EventEmitter();
-  @Output() edit_form: EventEmitter<Mesa> = new EventEmitter();
-  usuario: any;
-  is_logged: boolean = false;
+  @Input() content: any;
+  public usuario: any;
+  public showModal: boolean = false;
+  public is_logged: boolean = false;
+  public type: string;
 
   constructor(public mesaService: MesaService, public auth: LoginService) { }
 
@@ -25,17 +26,13 @@ export class BoxComponent implements OnInit {
     }
   }
 
-  editar (mesa: Mesa) {
-    this.edit_form.emit(mesa);
-    this.callback.emit(null);
+  showModalWindow(object:any, type: string) {
+    this.type = type;
+    this.content = object;
+    this.showModal = true;
   }
 
-  borrar (mesa: Mesa) {
-    this.mesaService.borrarMesa(mesa.id.toString());
-    this.callback.emit(null);
-  }
-
-  refresh() {
-    this.callback.emit(null);
+  closeModal() {
+    this.showModal = false;
   }
 }

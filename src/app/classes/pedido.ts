@@ -29,4 +29,20 @@ export class Pedido {
         }
         return lista_de_pedidos;
     }
+
+    public tomar() {
+
+    }
+
+    public entregar() {
+
+    }
+
+    public servir() {
+
+    }
+
+    public cancelar() {
+        
+    }
 }

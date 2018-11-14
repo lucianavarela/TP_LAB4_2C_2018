@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../../services/login/login.service';
+import { RecaptchaModule, RecaptchaComponent } from 'angular-google-recaptcha';
+declare var grecaptcha: RecaptchaComponent;
 
 export class Usuario {
   public usuario: string = '';
@@ -20,12 +22,12 @@ export class Usuario {
 export class LoginComponent implements OnInit {
   usuario: Usuario = new Usuario('', '');
   sectores: { sector: string, user: string }[] = [
-    {'sector': 'management', 'user': 'adri'},
-    {'sector': 'mozo', 'user': 'agus'},
-    {'sector': 'cocina', 'user': 'luli'},
-    {'sector': 'barra', 'user': 'omar'},
-    {'sector': 'candy', 'user': 'cami'},
-    {'sector': 'cerveza', 'user': 'moni'}
+    { 'sector': 'management', 'user': 'adri' },
+    { 'sector': 'mozo', 'user': 'agus' },
+    { 'sector': 'cocina', 'user': 'luli' },
+    { 'sector': 'barra', 'user': 'omar' },
+    { 'sector': 'candy', 'user': 'cami' },
+    { 'sector': 'cerveza', 'user': 'moni' }
   ]
 
   constructor(private login: LoginService) {
@@ -43,9 +45,9 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  submit(objeto:any) {
+  submit(objeto: any) {
     this.usuario.usuario = objeto.user;
     this.usuario.clave = '123';
-    this.enviar();
+    //this.enviar();
   }
 }

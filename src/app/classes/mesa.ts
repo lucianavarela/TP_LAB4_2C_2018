@@ -17,4 +17,8 @@ export class Mesa {
         }
         return lista_de_mesas;
     }
+
+    public cerrar() {
+        console.log('cerrando', this.id);
+    }
 }

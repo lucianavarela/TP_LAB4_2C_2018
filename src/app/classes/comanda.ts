@@ -1,3 +1,7 @@
+import { Injectable } from "@angular/core";
+import { ComandaService } from "../services/comanda/comanda.service";
+
+@Injectable()
 export class Comanda {
     public id: number = 0;
     public nombreCliente: string = '';
@@ -5,6 +9,8 @@ export class Comanda {
     public idMesa: string = '';
     public foto: string = '';
     public importe: number = 0;
+    public service: ComandaService;
+    public file: File = null;
 
     constructor(id: number, nombreCliente: string, codigo: string, idMesa: string, foto: string, importe: number) {
         this.id = id;
@@ -22,5 +28,26 @@ export class Comanda {
             lista_de_empleados.push(new_empleado);
         }
         return lista_de_empleados;
+    }
+
+    public cobrar() {
+
+    }
+
+    public subirFoto(event) {
+        this.file = event.target.files[0];
+    }
+
+    public guardarFoto() {
+        const formdata = new FormData();
+        formdata.append("foto", this.file);
+        console.log(formdata);
+        ComandaService.instance.subirFoto(formdata, this.codigo)
+            .then(data => {
+                console.log(data);
+            })
+            .catch(e => {
+                console.info(e);
+            });
     }
 }

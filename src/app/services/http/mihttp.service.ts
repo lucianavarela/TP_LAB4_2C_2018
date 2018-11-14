@@ -30,6 +30,7 @@ export class MihttpService {
   }
 
   public post(url, data: Object) {
+    console.log(this.api + url);
     return this.http.post(this.api + url, data, httpOptions)
       .toPromise()
       .then(this.extractData)

@@ -17,45 +17,10 @@
         <div class="tile">
           <div class="tile is-4 is-parent reportes-mesas">
             <div class="tile is-child box">
-              <p class="subtitle">MESAS</p>
-              <label class="label">Uso</label>
-              <div class="box">
-                <div class="columns">
-                  <div class="column">
-                    <span class="icon">
-                      <i class="fa fa-thumbs-o-up"></i>
-                    </span>
-                    <span>{{reporte_6.content.mesa}}</span>
-                    <span class="pedido-cantidad">{{reporte_6.content.cantidad}}</span>
-                  </div>
-                  <div class="column">
-                    <span class="icon">
-                      <i class="fa fa-thumbs-o-down"></i>
-                    </span>
-                    <span>{{reporte_7.content.mesa}}</span>
-                    <span class="pedido-cantidad">{{reporte_7.content.cantidad}}</span>
-                  </div>
-                </div>
-              </div>
-              <label class="label">Recaudación</label>
-              <div class="box">
-                <div class="columns">
-                  <div class="column">
-                    <span class="icon">
-                      <i class="fa fa-thumbs-o-up"></i>
-                    </span>
-                    <span>{{reporte_8.content.mesa}}</span>
-                    <span class="importe">${{reporte_8.content.importe}}</span>
-                  </div>
-                  <div class="column">
-                    <span class="icon">
-                      <i class="fa fa-thumbs-o-down"></i>
-                    </span>
-                    <span>{{reporte_9.content.mesa}}</span>
-                    <span class="importe">${{reporte_9.content.importe}}</span>
-                  </div>
-                </div>
-              </div>
+              <label class="label">Uso de Mesas</label>
+              <canvas baseChart [data]="reporte_6.usos" [labels]="reporte_6.mesas" [chartType]="'doughnut'"></canvas>
+              <label class="label">Recaudación de Mesas</label>
+              <canvas baseChart [data]="reporte_8.importes" [labels]="reporte_8.mesas" [chartType]="'doughnut'"></canvas>
               <label class="label">Importe</label>
               <div class="box">
                 <div class="columns">

@@ -3,8 +3,9 @@
     <div class="media">
       <div class="media-left">
         <figure class="image is-48x48">
-          <img *ngIf="tipo!='pedido'" src="assets/{{tipo}}.svg" alt="Empleado">
-          <img *ngIf="tipo=='pedido'" src="assets/{{objeto.sector}}.svg" alt="Empleado">
+          <img *ngIf="tipo!='pedido'&&(tipo!='comanda' || (tipo=='comanda'&&objeto.foto==''))" src="assets/{{tipo}}.svg" alt="Imagen">
+          <img *ngIf="tipo=='comanda'&&objeto.foto!=''" src="https://comandaback.herokuapp.com/fotos/{{objeto.foto}}" alt="Imagen">
+          <img *ngIf="tipo=='pedido'" src="assets/{{objeto.sector}}.svg" alt="Imagen">
         </figure>
       </div>
       <div class="media-content">
@@ -31,7 +32,8 @@
       </div>
     </div>
 
-    <div *ngIf="tipo!='encuesta'&&(usuario.sector!='management'&&tipo=='empleado')" class="has-text-small has-text-centered status">
+    <div *ngIf="tipo!='encuesta'&&(usuario.sector!='management'||(usuario.sector=='management'&&tipo!='empleado'))"
+      class="has-text-small has-text-centered status">
       <p>{{objeto.estado | titlecase}}</p>
     </div>
     <div *ngIf="tipo=='encuesta'" class="has-text-small status">
@@ -41,17 +43,34 @@
     <progress *ngIf="tipo=='encuesta'&&objeto.promedio<4" class="progress is-danger" value="{{objeto.promedio}}" max="10">
       {{objeto.promedio}} puntos
     </progress>
-    <progress *ngIf="tipo=='encuesta'&&objeto.promedio>4&&objeto.promedio<8" class="progress is-info" value="{{objeto.promedio}}" max="10">
+    <progress *ngIf="tipo=='encuesta'&&objeto.promedio>4&&objeto.promedio<8" class="progress is-info" value="{{objeto.promedio}}"
+      max="10">
       {{objeto.promedio}} puntos
     </progress>
     <progress *ngIf="tipo=='encuesta'&&objeto.promedio>8" class="progress is-success" value="{{objeto.promedio}}" max="10">
       {{objeto.promedio}} puntos
     </progress>
 
-    <footer class="card-footer" *ngIf="tipo!='encuesta'">
-      <a class="has-text-info card-footer-item" (click)="editar(mesa)">Editar</a>
-      <a class="has-text-info card-footer-item" (click)="borrar(mesa)">Borrar</a>
+
+    <footer class="card-footer" *ngIf="tipo=='mesa'&&usuario.sector=='management'">
+      <a class="has-text-info card-footer-item" (click)="objeto.cerrar()">Cerrar</a>
+    </footer>
+    <footer class="card-footer" *ngIf="tipo=='comanda'&&usuario.sector=='mozo'">
+      <a class="has-text-info card-footer-item" (click)="objeto.cobrar()">Cobrar</a>
+      <a class="has-text-info card-footer-item" (click)="showModalWindow(objeto, 'foto')"><span class="icon"><i class="fa fa-upload"></i></span>Foto</a>
+    </footer>
+    <footer class="card-footer" *ngIf="tipo=='pedido'">
+      <a class="has-text-info card-footer-item" *ngIf="usuario.sector=='empleado'" (click)="objeto.tomar()">Tomar</a>
+      <a class="has-text-info card-footer-item" *ngIf="usuario.sector=='empleado'" (click)="objeto.entregar()">Entregar</a>
+      <a class="has-text-info card-footer-item" *ngIf="usuario.sector=='mozo'" (click)="objeto.servir()">Servir</a>
+      <a class="has-text-info card-footer-item" *ngIf="usuario.sector=='management'" (click)="objeto.cancelar()">Cancelar</a>
+    </footer>
+    <footer class="card-footer" *ngIf="tipo=='empleado'&&usuario.sector=='management'">
+      <a class="has-text-info card-footer-item" *ngIf="objeto.estado=='activo'" (click)="objeto.deshabilitar()">Deshabilitar</a>
+      <a class="has-text-info card-footer-item" *ngIf="objeto.estado!='activo'" (click)="objeto.activar()">Deshabilitar</a>
     </footer>
 
   </div>
 </div>
+
+<app-modal-list (callback)="closeModal()" [showModal]="showModal" [tipo]="type" [content]="content"></app-modal-list>

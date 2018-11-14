@@ -23,4 +23,12 @@ export class Empleado {
         }
         return lista_de_empleados;
     }
+
+    public activar() {
+
+    }
+
+    public deshabilitar() {
+        
+    }
 }

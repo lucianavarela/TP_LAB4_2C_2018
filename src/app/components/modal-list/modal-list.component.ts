@@ -9,9 +9,10 @@ export class ModalListComponent implements OnInit, OnChanges {
   @Output() callback: EventEmitter<any> = new EventEmitter();
   @Input() tipo: string;
   @Input() list: Array<any>;
+  @Input() content: any;
   @Input() showModal: boolean;
   public keys: Array<any>;
-  public content: Array<any>;
+  public table: Array<any>;
 
   constructor() {
   }
@@ -22,13 +23,13 @@ export class ModalListComponent implements OnInit, OnChanges {
   ngOnChanges() {
     if (this.list) {
       this.keys = Object.keys(this.list[0]);
-      this.content = [];
+      this.table = [];
       for (let i of this.list) {
         let new_row = [];
         for (let j of this.keys) {
           new_row.push(i[j]);
         }
-        this.content.push(new_row);
+        this.table.push(new_row);
       }
     }
   }

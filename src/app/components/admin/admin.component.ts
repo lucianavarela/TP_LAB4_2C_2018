@@ -64,7 +64,7 @@ export class AdminComponent implements OnInit {
                 'content': data[key]
               };
               break;
-            case '8a-más_pedido':
+            case '8a-mas_pedido':
               this.reporte_2 = {
                 'nombre': 'Más pedido',
                 'content': data[key]
@@ -91,25 +91,15 @@ export class AdminComponent implements OnInit {
             case '9a-mesa_mas_usada':
               this.reporte_6 = {
                 'nombre': 'Mesa más usada',
-                'content': data[key]
-              };
-              break;
-            case '9b-mesa_menos_usada':
-              this.reporte_7 = {
-                'nombre': 'Mesa menos usada',
-                'content': data[key]
+                'mesas': data[key].map(a => a.mesa),
+                'usos': data[key].map(a => a.cantidad)
               };
               break;
             case '9c-mesa_mas_paga':
               this.reporte_8 = {
                 'nombre': 'Mesa más paga',
-                'content': data[key]
-              };
-              break;
-            case '9d-mesa_menos_paga':
-              this.reporte_9 = {
-                'nombre': 'Mesa menos paga',
-                'content': data[key]
+                'mesas': data[key].map(a => a.mesa),
+                'importes': data[key].map(a => a.importe)
               };
               break;
             case '9e-mesa_importe_mas_alto':
@@ -120,7 +110,7 @@ export class AdminComponent implements OnInit {
               break;
             case '9f-mesa_importe_mas_bajo':
               this.reporte_11 = {
-                'nombre': 'Mesa con importe menos alto',
+                'nombre': 'Mesa con importe más alto',
                 'content': data[key]
               };
               break;
@@ -153,7 +143,7 @@ export class AdminComponent implements OnInit {
       });
   }
 
-  showTable(content:Array<any>) {
+  showTable(content: Array<any>) {
     this.type = 'list';
     this.list = content;
     this.showModal = true;

@@ -6,9 +6,9 @@ import { BoxComponent } from './components/box/box.component';
 import { MihttpService } from './services/http/mihttp.service';
 import { MesaService } from './services/mesa/mesa.service';
 import { LoginService } from './services/login/login.service';
-import { HttpClientModule, HttpClient, HttpHandler } from '@angular/common/http';
+import { HttpClientModule  } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
-import { RouterModule, Routes, Router } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { FormsModule } from '@angular/forms';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
@@ -24,6 +24,10 @@ import { RegisterComponent } from './components/register/register.component';
 import { LogsComponent } from './components/logs/logs.component';
 import { CaptchaComponent } from './components/captcha/captcha.component';
 import { ModalListComponent } from './components/modal-list/modal-list.component';
+import { ChartsModule } from 'ng2-charts';
+import { ComandaService } from './services/comanda/comanda.service';
+import { RecaptchaComponent } from './components/recaptcha/recaptcha.component';
+import { RecaptchaModule, RECAPTCHA_SETTINGS, RecaptchaSettings } from 'ng-recaptcha';
 
 const MiRuteo = [
   { path: '', component: MainComponent },
@@ -54,7 +58,8 @@ const MiRuteo = [
     RegisterComponent,
     LogsComponent,
     CaptchaComponent,
-    ModalListComponent
+    ModalListComponent,
+    RecaptchaComponent
   ],
   imports: [
     BrowserModule,
@@ -63,9 +68,14 @@ const MiRuteo = [
     AngularFontAwesomeModule,
     FormsModule,
     BrowserModule,
-    RouterModule.forRoot(MiRuteo)
+    ChartsModule,
+    RouterModule.forRoot(MiRuteo),
+    RecaptchaModule
   ],
-  providers: [MihttpService, MesaService, LoginService, PopupComponent, ModalListComponent],
+  providers: [MihttpService, MesaService, LoginService, PopupComponent, ModalListComponent, ComandaService, {
+    provide: RECAPTCHA_SETTINGS,
+      useValue: { siteKey: '<6Ld12HoUAAAAAPjwxTsCRO41efWc9BfNYT-7oA63>' } as RecaptchaSettings,
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
