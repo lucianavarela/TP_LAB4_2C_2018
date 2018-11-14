@@ -53,6 +53,5 @@ export class LoginComponent implements OnInit {
 
   isNoRobot() {
     this.can_login = true;
-    this.enviar();
   }
 }
