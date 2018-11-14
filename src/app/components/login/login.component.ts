@@ -21,6 +21,7 @@ export class Usuario {
 
 export class LoginComponent implements OnInit {
   usuario: Usuario = new Usuario('', '');
+  public can_login: boolean = false;
   sectores: { sector: string, user: string }[] = [
     { 'sector': 'management', 'user': 'adri' },
     { 'sector': 'mozo', 'user': 'agus' },
@@ -48,6 +49,10 @@ export class LoginComponent implements OnInit {
   submit(objeto: any) {
     this.usuario.usuario = objeto.user;
     this.usuario.clave = '123';
-    //this.enviar();
+  }
+
+  isNoRobot() {
+    this.can_login = true;
+    this.enviar();
   }
 }

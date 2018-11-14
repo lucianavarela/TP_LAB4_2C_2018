@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'recaptcha-module',
@@ -6,7 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./recaptcha.component.css'],
 })
 export class RecaptchaComponent {
-    public resolved(captchaResponse: string) {
-        console.log(`Resolved captcha with response ${captchaResponse}:`);
+    @Output() callback: EventEmitter<any> = new EventEmitter();
+
+    public resolved() {
+        this.callback.emit();
     }
 }
