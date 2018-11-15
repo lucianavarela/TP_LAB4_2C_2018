@@ -5,12 +5,14 @@ import { Component, OnInit, Input, OnChanges, Output, EventEmitter } from '@angu
   templateUrl: './modal-list.component.html',
   styleUrls: ['./modal-list.component.css']
 })
+
 export class ModalListComponent implements OnInit, OnChanges {
   @Output() callback: EventEmitter<any> = new EventEmitter();
   @Input() tipo: string;
   @Input() list: Array<any>;
   @Input() content: any;
   @Input() showModal: boolean;
+  public is_loading: boolean = false;
   public keys: Array<any>;
   public table: Array<any>;
 
@@ -18,6 +20,11 @@ export class ModalListComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
+  }
+
+  fileChange(event) {
+    this.is_loading = true;
+    this.content.cargarFoto(event);
   }
 
   ngOnChanges() {

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../../services/login/login.service';
 import { RecaptchaModule, RecaptchaComponent } from 'angular-google-recaptcha';
+import { Router } from '@angular/router';
 declare var grecaptcha: RecaptchaComponent;
 
 export class Usuario {
@@ -31,12 +32,15 @@ export class LoginComponent implements OnInit {
     { 'sector': 'cerveza', 'user': 'moni' }
   ]
 
-  constructor(private login: LoginService) {
+  constructor(private login: LoginService, private router: Router) {
     this.usuario.usuario = '';
     this.usuario.clave = '';
   }
 
   ngOnInit() {
+    if ((this.router.url).indexOf('localhost') > -1) {
+      this.can_login = true;
+    }
   }
 
   enviar() {

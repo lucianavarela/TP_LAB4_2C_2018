@@ -1,7 +1,5 @@
-import { Injectable } from "@angular/core";
-import { ComandaService } from "../services/comanda/comanda.service";
+//import * as base64 from 'base64-img';
 
-@Injectable()
 export class Comanda {
     public id: number = 0;
     public nombreCliente: string = '';
@@ -9,8 +7,6 @@ export class Comanda {
     public idMesa: string = '';
     public foto: string = '';
     public importe: number = 0;
-    public service: ComandaService;
-    public file: File = null;
 
     constructor(id: number, nombreCliente: string, codigo: string, idMesa: string, foto: string, importe: number) {
         this.id = id;
@@ -34,20 +30,21 @@ export class Comanda {
 
     }
 
-    public subirFoto(event) {
-        this.file = event.target.files[0];
-    }
+    public cargarFoto(event) {
+        let file = event.target.files[0];
+        console.log(file);
 
-    public guardarFoto() {
-        const formdata = new FormData();
-        formdata.append("foto", this.file);
-        console.log(formdata);
-        ComandaService.instance.subirFoto(formdata, this.codigo)
-            .then(data => {
-                console.log(data);
-            })
-            .catch(e => {
-                console.info(e);
-            });
+        /*base64.base64('path/demo.png', function(err, data) {
+            const formdata = new FormData();
+            formdata.append("foto", file);
+            console.log(formdata);
+            ComandaService.instance.subirFoto(formdata, this.codigo)
+                .then(data => {
+                    console.log(data);
+                })
+                .catch(e => {
+                    console.info(e);
+                });
+        })*/
     }
 }

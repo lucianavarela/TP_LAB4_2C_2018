@@ -15,10 +15,10 @@
         </tbody>
       </table>
       <div *ngIf="tipo=='foto'">
-        <div class="field">
-          <div class="file is-centered is-info">
+        <div class="field has-text-centered">
+          <div *ngIf="!is_loading" class="file is-centered is-info">
             <label class="file-label">
-              <input class="file-input" type="file" name="resume" (change)="content.subirFoto($event)">
+              <input class="file-input" type="file" name="resume" (change)="fileChange($event)">
               <span class="file-cta">
                 <span class="file-icon">
                   <i class="fa fa-upload"></i>
@@ -27,14 +27,9 @@
               </span>
             </label>
           </div>
-        </div>
-        <div *ngIf="content.file!=null">
-          <img [src]="content.file" alt="">
-          <div class="field has-text-centered">
-            <div class="control">
-              <a (click)="content.guardarFoto()" class="button is-info">Guardar</a>
-            </div>
-          </div>
+          <span *ngIf="is_loading" class="icon is-large">
+            <i class="fa fa-spin fa-refresh" style="font-size:3rem"></i>
+          </span>
         </div>
       </div>
     </div>
