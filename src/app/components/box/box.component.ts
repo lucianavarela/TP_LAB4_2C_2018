@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Mesa } from '../../classes/mesa';
 import { MesaService } from '../../services/mesa/mesa.service';
 import { LoginService } from 'src/app/services/login/login.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-box',
@@ -17,7 +18,7 @@ export class BoxComponent implements OnInit {
   public is_logged: boolean = false;
   public type: string;
 
-  constructor(public mesaService: MesaService, public auth: LoginService) { }
+  constructor(public mesaService: MesaService, public auth: LoginService, public domSanitizer: DomSanitizer) { }
 
   ngOnInit() {
     this.is_logged = this.auth.isLogued();

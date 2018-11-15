@@ -4,7 +4,7 @@
       <div class="media-left">
         <figure class="image is-48x48">
           <img *ngIf="tipo!='pedido'&&(tipo!='comanda' || (tipo=='comanda'&&objeto.foto==''))" src="assets/{{tipo}}.svg" alt="Imagen">
-          <img *ngIf="tipo=='comanda'&&objeto.foto!=''" src="https://comandaback.herokuapp.com/fotos/{{objeto.foto}}" alt="Imagen">
+          <img *ngIf="tipo=='comanda'&&objeto.foto!=''" [src]="domSanitizer.bypassSecurityTrustUrl('data:'+objeto.tipoFoto+';base64,'+objeto.foto)" alt="Imagen">
           <img *ngIf="tipo=='pedido'" src="assets/{{objeto.sector}}.svg" alt="Imagen">
         </figure>
       </div>

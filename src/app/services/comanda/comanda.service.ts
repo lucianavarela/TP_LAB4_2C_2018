@@ -49,7 +49,7 @@ export class ComandaService {
     return this.miHttp.post(this.ruta + 'foto/' + codigoComanda, objeto)
       .then(data => {
         if (data.status == "OK") {
-          this.traerComandas();
+          location.reload();
         } else {
           this.popup.show("error", data.mensaje);
         }
