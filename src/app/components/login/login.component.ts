@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../../services/login/login.service';
-import { RecaptchaModule, RecaptchaComponent } from 'angular-google-recaptcha';
 import { Router } from '@angular/router';
-declare var grecaptcha: RecaptchaComponent;
 
 export class Usuario {
   public usuario: string = '';
