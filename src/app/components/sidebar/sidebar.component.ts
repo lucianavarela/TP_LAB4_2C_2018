@@ -14,9 +14,6 @@ export class SidebarComponent implements OnInit {
 
   constructor(private router: Router, public auth: LoginService) {
     if (this.auth.getToken()) this.usuario = this.auth.getToken().data;
-    this.auth.userTokenData.subscribe(value => {
-      this.usuario = value;
-    });
   }
 
   ngOnInit() {
@@ -30,4 +27,10 @@ export class SidebarComponent implements OnInit {
     this.auth.logOut();
   }
 
+  updateBar() {
+    this.is_logged = this.auth.isLogued();
+    if (this.is_logged) {
+      this.usuario = this.auth.getToken().data;
+    }
+  }
 }

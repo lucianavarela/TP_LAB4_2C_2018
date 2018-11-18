@@ -1,3 +1,4 @@
-<app-sidebar></app-sidebar>
-<router-outlet></router-outlet>
+<app-spinner [hidden]="!HTTPActivity"></app-spinner>
+<app-sidebar (update)="updateBar($event)"></app-sidebar>
+<router-outlet (activate)="changeOfRoutes()"></router-outlet>
 <app-popup></app-popup>

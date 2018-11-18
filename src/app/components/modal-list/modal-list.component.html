@@ -27,9 +27,38 @@
               </span>
             </label>
           </div>
-          <span *ngIf="is_loading" class="icon is-large">
-            <i class="fa fa-spin fa-refresh" style="font-size:3rem"></i>
-          </span>
+        </div>
+      </div>
+      <div *ngIf="tipo=='importe'">
+        <div class="field has-text-centered">
+          <label for="importe" class="label">Importe</label>
+          <div class="control has-icons-left">
+            <span class="icon is-left">
+              <i class="fa fa-usd"></i>
+            </span>
+            <input type="number" [(ngModel)]="number" name="importe" required class="input" id="importe">
+          </div>
+        </div>
+        <div class="field has-text-centered">
+          <div class="control">
+            <a (click)="cobrar()" class="button">Cobrar</a>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="tipo=='time'">
+        <div class="field has-text-centered">
+          <label for="importe" class="label">Ingrese los minutos que le llevará realizar este pedido</label>
+          <div class="control has-icons-left">
+            <span class="icon is-left">
+              <i class="fa fa-time"></i>
+            </span>
+            <input type="number" [(ngModel)]="number" name="importe" required class="input" id="importe">
+          </div>
+        </div>
+        <div class="field has-text-centered">
+          <div class="control">
+            <a (click)="tomarPedido()" class="button">Tomar Pedido</a>
+          </div>
         </div>
       </div>
     </div>

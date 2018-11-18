@@ -25,6 +25,9 @@ export class MesasComponent implements OnInit {
     this.mesa_service.traerMesas()
       .then(data => {
         this.mesas = Mesa.toMesa(data);
+        if (this.mesas.length == 0) {
+          this.message = 'No hay mesas ingresadas';
+        }
       })
       .catch(e => {
         console.info(e);

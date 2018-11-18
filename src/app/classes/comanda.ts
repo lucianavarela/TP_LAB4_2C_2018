@@ -1,7 +1,5 @@
 import { ComandaService } from "../services/comanda/comanda.service";
 
-//import * as base64 from 'base64-img';
-
 export class Comanda {
     public id: number = 0;
     public nombreCliente: string = '';
@@ -22,7 +20,6 @@ export class Comanda {
     }
 
     public static toComanda(list: Array<any>) {
-        console.log(list);
         let lista_de_empleados = new Array<Comanda>();
         for (var i in list) {
             let new_empleado = new Comanda(list[i].id, list[i].nombreCliente, list[i].codigo, list[i].idMesa, list[i].foto, list[i].tipoFoto, list[i].importe);
@@ -31,8 +28,11 @@ export class Comanda {
         return lista_de_empleados;
     }
 
-    public cobrar() {
-
+    public cobrar(importe) {
+        ComandaService.instance.cobrar({
+            'codigoComanda': this.codigo,
+            'importe': importe
+        });
     }
 
     public cargarFoto(event) {
@@ -52,7 +52,6 @@ export class Comanda {
     }
 
     public guardarFoto(objeto) {
-        console.log('3', objeto);
         ComandaService.instance.subirFoto(objeto, this.codigo);
     }
 }

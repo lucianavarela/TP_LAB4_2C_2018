@@ -36,9 +36,6 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    if ((this.router.url).indexOf('localhost') > -1) {
-      this.can_login = true;
-    }
   }
 
   enviar() {
@@ -51,6 +48,9 @@ export class LoginComponent implements OnInit {
   submit(objeto: any) {
     this.usuario.usuario = objeto.user;
     this.usuario.clave = '123';
+    if ((this.router.url).indexOf('localhost') > -1) {
+      this.enviar();
+    }
   }
 
   isNoRobot() {

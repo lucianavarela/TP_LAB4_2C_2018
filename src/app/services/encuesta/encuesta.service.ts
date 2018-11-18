@@ -7,10 +7,13 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class EncuestaService {
+  static instance: EncuestaService;
   ruta: string = 'api/encuesta/'
   response: any;
 
-  constructor(private router: Router, public miHttp: MihttpService, public popup: PopupComponent) { }
+  constructor(public miHttp: MihttpService, public popup: PopupComponent) {
+    EncuestaService.instance = this;
+  }
 
   public traerEncuestas() {
     return this.miHttp.get(this.ruta);

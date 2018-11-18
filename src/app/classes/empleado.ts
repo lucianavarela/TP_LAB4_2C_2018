@@ -1,3 +1,5 @@
+import { EmpleadoService } from "../services/empleado/empleado.service";
+
 export class Empleado {
     public id: number = 0;
     public usuario: string = '';
@@ -25,10 +27,14 @@ export class Empleado {
     }
 
     public activar() {
-
+        EmpleadoService.instance.activar({
+            'idEmpleado': this.id
+        });
     }
 
     public deshabilitar() {
-        
+        EmpleadoService.instance.deshabilitar({
+            'idEmpleado': this.id
+        });
     }
 }

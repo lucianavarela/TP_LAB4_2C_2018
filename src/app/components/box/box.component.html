@@ -56,18 +56,20 @@
       <a class="has-text-info card-footer-item" (click)="objeto.cerrar()">Cerrar</a>
     </footer>
     <footer class="card-footer" *ngIf="tipo=='comanda'&&usuario.sector=='mozo'">
-      <a class="has-text-info card-footer-item" (click)="objeto.cobrar()">Cobrar</a>
+      <a class="has-text-info card-footer-item" *ngIf="objeto.importe == null" (click)="showModalWindow(objeto, 'importe')">Cobrar</a>
+      <p class=" card-footer-item" *ngIf="objeto.importe != null">${{objeto.importe}}</p>
       <a class="has-text-info card-footer-item" (click)="showModalWindow(objeto, 'foto')"><span class="icon"><i class="fa fa-upload"></i></span>Foto</a>
     </footer>
     <footer class="card-footer" *ngIf="tipo=='pedido'">
-      <a class="has-text-info card-footer-item" *ngIf="usuario.sector=='empleado'" (click)="objeto.tomar()">Tomar</a>
-      <a class="has-text-info card-footer-item" *ngIf="usuario.sector=='empleado'" (click)="objeto.entregar()">Entregar</a>
+      <a class="has-text-info card-footer-item" *ngIf="objeto.sector==usuario.sector&&objeto.idEmpleado==null" (click)="showModalWindow(objeto, 'time')">Tomar</a>
+      <p class="card-footer-item" *ngIf="objeto.sector==usuario.sector&&objeto.idEmpleado!=null" >{{objeto.tiempo_restante}} minutos</p>
+      <a class="has-text-info card-footer-item" *ngIf="objeto.sector==usuario.sector&&objeto.idEmpleado!=null" (click)="objeto.entregar()">Entregar</a>
       <a class="has-text-info card-footer-item" *ngIf="usuario.sector=='mozo'" (click)="objeto.servir()">Servir</a>
-      <a class="has-text-info card-footer-item" *ngIf="usuario.sector=='management'" (click)="objeto.cancelar()">Cancelar</a>
+      <a class="has-text-info card-footer-item" *ngIf="usuario.sector=='management'&&(objeto.estado=='pendiente'||objeto.estado=='en preparación')" (click)="objeto.cancelar()">Cancelar</a>
     </footer>
     <footer class="card-footer" *ngIf="tipo=='empleado'&&usuario.sector=='management'">
       <a class="has-text-info card-footer-item" *ngIf="objeto.estado=='activo'" (click)="objeto.deshabilitar()">Deshabilitar</a>
-      <a class="has-text-info card-footer-item" *ngIf="objeto.estado!='activo'" (click)="objeto.activar()">Deshabilitar</a>
+      <a class="has-text-info card-footer-item" *ngIf="objeto.estado!='activo'" (click)="objeto.activar()">Activar</a>
     </footer>
 
   </div>

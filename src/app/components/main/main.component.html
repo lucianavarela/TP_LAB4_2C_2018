@@ -3,7 +3,7 @@
     <div class="column is-narrow">
       <img *ngIf="is_logged" class="is-centered" src="assets/{{usuario.sector}}.svg" alt="icon">
     </div>
-    <div class="column">
+    <div class="column is-half">
       <section class="hero">
         <div class="hero-body">
           <div class="container">
@@ -16,9 +16,48 @@
           </div>
         </div>
       </section>
+      <div *ngIf="!is_logged" class="section">
+        <div class="field" style="margin-bottom:2rem">
+          <div class="control has-text-centered">
+            <button (click)="takeMe()" type="submit" class="button is-large is-info">¿Cómo voy?</button>
+          </div>
+        </div>
+        <div class="box">
+          <div class="columns">
+            <div class="column">
+              <div class="field">
+                <label class="label" for="mesa">Mesa</label>
+                <div class="control has-text-centered">
+                  <div class="select is-fullwidth">
+                    <select [(ngModel)]="mesa" name="mesa" required id="mesa">
+                      <option>Seleccione su mesa</option>
+                      <option *ngFor="let mesa of mesas">{{mesa.codigo}}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="column">
+              <div class="field">
+                <label class="label" for="comandaId">Código Comanda</label>
+                <div class="control has-text-centered is-fullwidth">
+                  <input id="comandaId" class="input" name="comandaId" type="text" [(ngModel)]="comandaId" value="">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <div class="control has-text-centered is-expanded">
+              <button type="submit" (click)="estadoPedidos()" class="button is-link is-fullwidth">Ver Estado</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-  <div>
-    <div #gmap style="width:100%;height:350px"></div>
+    <div class="column">
+      <div>
+        <div #gmap style="width:100%;height:33rem"></div>
+      </div>
+    </div>
   </div>
 </div>

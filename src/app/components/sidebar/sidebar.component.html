@@ -1,22 +1,22 @@
-<nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+<nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation" style="min-height:6rem">
   <div class="navbar-brand">
-    <a class="navbar-item" href="/">
+    <a class="navbar-item" routerLink="/">
       <img src="assets/logo.png" width="112" height="28" style="max-height:4.75rem">
     </a>
   </div>
 
   <div id="navbarBasicExample" class="navbar-menu">
     <div class="navbar-start">
-      <a class="navbar-item" href="/">
+      <a class="navbar-item" routerLink="/">
         Home
       </a>
 
-      <a *ngIf="is_logged" class="navbar-item" href="/mesas">
+      <a *ngIf="is_logged" class="navbar-item" routerLink="/mesas">
         Mesas
       </a>
 
       <div *ngIf="is_logged" class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link" href="/comandas">
+        <a class="navbar-link" routerLink="/comandas">
           Comandas
         </a>
         <div class="navbar-dropdown">
@@ -26,16 +26,16 @@
         </div>
       </div>
 
-      <a *ngIf="is_logged" class="navbar-item" href="/pedidos">
+      <a *ngIf="is_logged" class="navbar-item" routerLink="/pedidos">
         Pedidos
       </a>
 
-      <a *ngIf="is_logged&&usuario.sector!='management'" class="navbar-item" href="/empleados">
+      <a *ngIf="is_logged&&usuario.sector!='management'" class="navbar-item" routerLink="/empleados">
         Empleados
       </a>
 
       <div *ngIf="is_logged&&usuario.sector=='management'" class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link" href="/empleados">
+        <a class="navbar-link" routerLink="/empleados">
           Empleados
         </a>
         <div class="navbar-dropdown">
@@ -45,11 +45,11 @@
         </div>
       </div>
 
-      <a *ngIf="is_logged&&usuario.sector=='management'" class="navbar-item" href="/encuestas">
+      <a *ngIf="is_logged&&usuario.sector=='management'" class="navbar-item" routerLink="/encuestas">
         Encuestas
       </a>
 
-      <a *ngIf="is_logged&&usuario.sector=='management'" class="navbar-item" href="/admin">
+      <a *ngIf="is_logged&&usuario.sector=='management'" class="navbar-item" routerLink="/admin">
         Admin
       </a>
 

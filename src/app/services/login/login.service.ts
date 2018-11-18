@@ -15,19 +15,19 @@ export class LoginService {
   jwtHelper = new JwtHelperService();
   userTokenData: Subject<any> = new Subject<any>();
 
-  constructor(private http: MihttpService, public popup: PopupComponent) {
+  constructor(private http: MihttpService, public popup: PopupComponent, public router: Router) {
     this._token = localStorage.getItem('token');
   }
 
   public isLogued() {
     try {
-      return (localStorage.getItem('token') && localStorage.getItem('token') != 'null' && this.isExpired());
+      return (localStorage.getItem('token') && localStorage.getItem('token') != 'null' && this.isNotExpired());
     } catch (error) {
       return false;
     }
   }
 
-  public isExpired() {
+  public isNotExpired() {
     try {
       return (this.getExpirationDate().getTime() > new Date().getTime());
     } catch (error) {
@@ -57,8 +57,9 @@ export class LoginService {
       .then(data => {
         if (data.status == "OK") {
           this._token = data.token;
+          this.http.updateTokenHeaders(data.token);
           localStorage.setItem('token', data.token);
-          window.location.href = '/';
+          this.router.navigate(['/']);
         } else {
           this.popup.show("error", data.mensaje);
         }
@@ -71,7 +72,9 @@ export class LoginService {
   public logOut() {
     try {
       localStorage.setItem('token', null);
-      window.location.href = '/';
+      this.http.updateTokenHeaders('');
+      this._token = null;
+      this.router.navigate(['/login']);
     } catch (error) {
       return false;
     }

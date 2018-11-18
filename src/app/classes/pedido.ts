@@ -1,3 +1,5 @@
+import { PedidoService } from "../services/pedido/pedido.service";
+
 export class Pedido {
     public id: number = 0;
     public idComanda: string = '';
@@ -8,6 +10,7 @@ export class Pedido {
     public estimacion: Date;
     public fechaIngresado: Date;
     public fechaEntregado: Date;
+    public tiempo_restante: number;
 
     constructor(id: number, idComanda: string, descripcion: string, sector: string, estado: string, idEmpleado: number, estimacion: Date, fechaIngresado: Date, fechaEntregado: Date) {
         this.id = id;
@@ -19,6 +22,7 @@ export class Pedido {
         this.estimacion = estimacion;
         this.fechaIngresado = fechaIngresado;
         this.fechaEntregado = fechaEntregado;
+        this.tiempo_restante = (new Date().getTime() - new Date(estimacion).getTime())/60;
     }
 
     public static toPedido(list: Array<any>) {
@@ -30,19 +34,28 @@ export class Pedido {
         return lista_de_pedidos;
     }
 
-    public tomar() {
-
+    public tomar(estimacion) {
+        PedidoService.instance.tomar({
+            'idPedido': this.id,
+            'estimacion': estimacion
+        });
     }
 
     public entregar() {
-
+        PedidoService.instance.entregar({
+            'idPedido': this.id
+        });
     }
 
     public servir() {
-
+        PedidoService.instance.servir({
+            'idPedido': this.id
+        });
     }
 
     public cancelar() {
-        
+        PedidoService.instance.cancelar({
+            'idPedido': this.id
+        });
     }
 }

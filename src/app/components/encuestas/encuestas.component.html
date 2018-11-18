@@ -1,5 +1,5 @@
-<div class="container has-navbar-fixed-top">
-  <div style="padding-top:6rem;" *ngIf="encuestas.length > 0">
+<div class="container has-navbar-fixed-top" style="padding-top:2rem;">
+  <div *ngIf="encuestas.length > 0">
     <div class="columns is-multiline">
       <div *ngFor="let encuesta of encuestas" class="column is-narrow">
         <app-box [tipo]="'encuesta'" [objeto]="encuesta"></app-box>
@@ -7,18 +7,18 @@
     </div>
   </div>
   <div *ngIf="message!=''" class="has-text-centered">
-    <p class="has-text-gray">{{message}}</p>
+    <p class="has-text-grey has-text-weight-bold">{{message}}</p>
   </div>
 </div>
 
 <div class="floating-menu">
-    <div class="field">
-      <div class="control">
-        <button type="submit" class="button is-large is-info" (click)="export()">
-          <span class="icon is-large">
-            <i class="fa fa-lg fa-download"></i>
-          </span>
-        </button>
-      </div>
+  <div class="field">
+    <div class="control">
+      <button type="submit" class="button is-large is-info" (click)="export()">
+        <span class="icon is-large">
+          <i class="fa fa-lg fa-download"></i>
+        </span>
+      </button>
     </div>
   </div>
+</div>

@@ -25,6 +25,9 @@ export class EncuestasComponent implements OnInit {
     this.encuesta_service.traerEncuestas()
       .then(data => {
         this.encuestas = Encuesta.toEncuesta(data);
+        if (this.encuestas.length == 0) {
+          this.message = 'No hay encuestas ingresadas';
+        }
       })
       .catch(e => {
         console.info(e);

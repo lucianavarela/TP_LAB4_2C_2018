@@ -1,3 +1,5 @@
+import { MesaService } from "../services/mesa/mesa.service";
+
 export class Mesa {
     public id: number = 0;
     public codigo: string = '';
@@ -19,6 +21,8 @@ export class Mesa {
     }
 
     public cerrar() {
-        console.log('cerrando', this.id);
+        MesaService.instance.cerrar({
+            'codigoMesa': this.codigo
+        });
     }
 }

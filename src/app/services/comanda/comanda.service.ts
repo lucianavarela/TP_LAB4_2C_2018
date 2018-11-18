@@ -58,4 +58,32 @@ export class ComandaService {
         console.info(e);
       });
   }
+
+  public cobrar(objeto) {
+    return this.miHttp.post(this.ruta + 'cobrar', objeto)
+      .then(data => {
+        if (data.status == "OK") {
+          location.reload();
+        } else {
+          this.popup.show("error", data.mensaje);
+        }
+      })
+      .catch(e => {
+        console.info(e);
+      });
+  }
+  
+  public verEstado(url) {
+    return this.miHttp.get(this.ruta + 'cliente/' + url)
+      .then(data => {
+        if (data.status == "OK") {
+          location.reload();
+        } else {
+          this.popup.show("error", data.mensaje);
+        }
+      })
+      .catch(e => {
+        console.info(e);
+      });
+  }
 }

@@ -12,9 +12,9 @@ export class ModalListComponent implements OnInit, OnChanges {
   @Input() list: Array<any>;
   @Input() content: any;
   @Input() showModal: boolean;
-  public is_loading: boolean = false;
   public keys: Array<any>;
   public table: Array<any>;
+  public number: number;
 
   constructor() {
   }
@@ -22,9 +22,25 @@ export class ModalListComponent implements OnInit, OnChanges {
   ngOnInit() {
   }
 
+  cobrar() {
+    if (this.number != null && this.number != undefined) {
+      this.content.cobrar(this.number);
+      this.closeModal();
+    }
+    this.number = null;
+  }
+
+  tomarPedido() {
+    if (this.number != null && this.number != undefined) {
+      this.content.tomar(this.number);
+      this.closeModal();
+    }
+    this.number = null;
+  }
+
   fileChange(event) {
-    this.is_loading = true;
     this.content.cargarFoto(event);
+    this.closeModal();
   }
 
   ngOnChanges() {

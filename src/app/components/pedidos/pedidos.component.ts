@@ -25,6 +25,9 @@ export class PedidosComponent implements OnInit {
     this.pedido_service.traerPedidos()
       .then(data => {
         this.pedidos = Pedido.toPedido(data);
+        if (this.pedidos.length == 0) {
+          this.message = 'Sin pedidos pendientes';
+        }
       })
       .catch(e => {
         console.info(e);

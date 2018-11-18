@@ -17,7 +17,9 @@ export class MihttpService {
 
   constructor(public http: HttpClient) {
     let token = localStorage.getItem('token');
-    if (token != '') {
+    if (token == '') {
+      httpOptions.headers = httpOptions.headers.delete('Authorization');
+    } else {
       httpOptions.headers = httpOptions.headers.append('Authorization', token);
     }
   }
@@ -30,7 +32,6 @@ export class MihttpService {
   }
 
   public post(url, data: Object) {
-    console.log(this.api + url);
     return this.http.post(this.api + url, data, httpOptions)
       .toPromise()
       .then(this.extractData)
@@ -57,5 +58,13 @@ export class MihttpService {
 
   private handleError(error: Response | any) {
     return error;
+  }
+
+  public updateTokenHeaders(token: string) {
+    if (token == '') {
+      httpOptions.headers = httpOptions.headers.delete('Authorization');
+    } else {
+      httpOptions.headers = httpOptions.headers.append('Authorization', token);
+    }
   }
 }

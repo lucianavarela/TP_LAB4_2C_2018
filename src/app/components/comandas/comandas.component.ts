@@ -25,6 +25,9 @@ export class ComandasComponent implements OnInit {
     this.comanda_service.traerComandas()
       .then(data => {
         this.comandas = Comanda.toComanda(data);
+        if (this.comandas.length == 0) {
+          this.message = 'No hay comandas ingresadas';
+        }
       })
       .catch(e => {
         console.info(e);

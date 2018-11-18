@@ -1,5 +1,5 @@
-<div class="container has-navbar-fixed-top">
-  <div style="padding-top:6rem;" *ngIf="logs.length > 0">
+<div class="container has-navbar-fixed-top" style="padding-top:2rem;">
+  <div *ngIf="logs.length > 0">
     <div class="columns is-multiline">
       <div *ngFor="let log of logs" class="column is-narrow">
         <app-box [tipo]="'log'" [objeto]="log"></app-box>
