@@ -4,6 +4,9 @@ import { MesaService } from 'src/app/services/mesa/mesa.service';
 import { Mesa } from 'src/app/classes/mesa';
 import * as jspdf from 'jspdf';
 import html2canvas from 'html2canvas';
+import { LogService } from 'src/app/services/log/log.service';
+import { Log } from 'src/app/classes/log';
+import { Angular5Csv } from 'angular5-csv/Angular5-csv';
 
 @Component({
   selector: 'app-admin',
@@ -13,6 +16,7 @@ import html2canvas from 'html2canvas';
 export class AdminComponent implements OnInit {
   public type: string;
   public list: Array<any>;
+  public logs: Array<Log>;
   message: string = '';
   showModal: boolean = false;
   mesas: Array<Mesa>;
@@ -35,7 +39,7 @@ export class AdminComponent implements OnInit {
   reporte_13: any = null;
   reporte_14: any = null;
 
-  constructor(public empleado_service: EmpleadoService, public mesa_service: MesaService) {
+  constructor(public empleado_service: EmpleadoService, public mesa_service: MesaService, public logs_service: LogService) {
     this.mesas = new Array<Mesa>();
   }
 
@@ -167,4 +171,17 @@ export class AdminComponent implements OnInit {
     });
   }
 
+  exportLogs() {
+    this.logs_service.traerLogs()
+      .then(data => {
+        this.logs = Log.toLog(data);
+        var options = {
+          headers: Object.keys(this.logs[0])
+        };
+        new Angular5Csv(this.logs, 'dump-logs', options);
+      })
+      .catch(e => {
+        console.info(e);
+      });
+  }
 }
