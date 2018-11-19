@@ -11,30 +11,34 @@
         Home
       </a>
 
-      <a *ngIf="is_logged" class="navbar-item" routerLink="/mesas">
+      <a *showAuthed="'any'" class="navbar-item" routerLink="/mesas">
         Mesas
       </a>
 
-      <div *ngIf="is_logged" class="navbar-item has-dropdown is-hoverable">
+      <a *showAuthed="'-mozo'" class="navbar-item" routerLink="/comandas">
+        Comandas
+      </a>
+
+      <div *showAuthed="'mozo'" class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link" routerLink="/comandas">
           Comandas
         </a>
         <div class="navbar-dropdown">
-          <a class="navbar-item">
+          <a class="navbar-item" routerLink="/comandas/carga">
             Nueva
           </a>
         </div>
       </div>
 
-      <a *ngIf="is_logged" class="navbar-item" routerLink="/pedidos">
+      <a *showAuthed="'any'" class="navbar-item" routerLink="/pedidos">
         Pedidos
       </a>
 
-      <a *ngIf="is_logged&&usuario.sector!='management'" class="navbar-item" routerLink="/empleados">
+      <a *showAuthed="'-management'" class="navbar-item" routerLink="/empleados">
         Empleados
       </a>
 
-      <div *ngIf="is_logged&&usuario.sector=='management'" class="navbar-item has-dropdown is-hoverable">
+      <div *showAuthed="'management'" class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link" routerLink="/empleados">
           Empleados
         </a>
@@ -45,11 +49,11 @@
         </div>
       </div>
 
-      <a *ngIf="is_logged&&usuario.sector=='management'" class="navbar-item" routerLink="/encuestas">
+      <a *showAuthed="'management'" class="navbar-item" routerLink="/encuestas">
         Encuestas
       </a>
 
-      <a *ngIf="is_logged&&usuario.sector=='management'" class="navbar-item" routerLink="/admin">
+      <a *showAuthed="'management'" class="navbar-item" routerLink="/admin">
         Admin
       </a>
 
@@ -58,13 +62,13 @@
     <div class="navbar-end">
       <div class="navbar-item has-text-centered" id="bar-buttons">
         <div class="buttons">
-          <a *ngIf="!is_logged" class="button is-primary" routerLink="/login" style="background-color:#dda59b">
+          <a *showAuthed="''" class="button is-primary" routerLink="/login" style="background-color:#dda59b">
             <strong>Ingresa</strong>
           </a>
-          <a *ngIf="is_logged" id="signout" class="button is-light" (click)="logout()">
+          <a *showAuthed="'any'" id="signout" class="button is-light" (click)="logout()">
             Salir
           </a>
-          <a *ngIf="is_logged" id="nombre" class="button is-white">
+          <a *showAuthed="'any'" id="nombre" class="button is-white">
             Hola {{usuario.usuario}}!
           </a>
         </div>

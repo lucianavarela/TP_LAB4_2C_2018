@@ -22,7 +22,8 @@ export class Pedido {
         this.estimacion = estimacion;
         this.fechaIngresado = fechaIngresado;
         this.fechaEntregado = fechaEntregado;
-        this.tiempo_restante = (new Date().getTime() - new Date(estimacion).getTime())/60;
+        let date = new Date();
+        this.tiempo_restante = new Date(estimacion).getTime() - new Date(date.valueOf() + date.getTimezoneOffset() * 60000).getTime();
     }
 
     public static toPedido(list: Array<any>) {

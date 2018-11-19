@@ -1,4 +1,4 @@
-<div class="card" style="width: 15rem;">
+<div class="card" style="width: 15rem;" appStatus [objeto]="objeto">
   <div class="card-content">
     <div class="media">
       <div class="media-left">
@@ -16,7 +16,7 @@
         <p *ngIf="tipo=='pedido'" class="title is-6">{{objeto.descripcion}}</p>
         <p *ngIf="tipo=='pedido'" class="subtitle is-6">{{objeto.idEmpleado}}</p>
         <p *ngIf="tipo=='encuesta'" class="title is-6">{{objeto.idComanda}}</p>
-        <p *ngIf="tipo=='encuesta'&&objeto.promedio>5" class="subtitle is-6">{{objeto.promedio}} puntos</p>
+        <p *ngIf="tipo=='encuesta'" class="subtitle is-6">{{objeto.promedio}} puntos</p>
       </div>
     </div>
 
@@ -27,7 +27,7 @@
           <p>{{objeto.estado | titlecase}}</p>
         </div>
         <div class="column">
-          <p>${{objeto.sueldo}}</p>
+          <p>{{objeto.sueldo | importe}}</p>
         </div>
       </div>
     </div>
@@ -40,14 +40,8 @@
       <p>{{objeto.comentario | titlecase}}</p>
     </div>
 
-    <progress *ngIf="tipo=='encuesta'&&objeto.promedio<4" class="progress is-danger" value="{{objeto.promedio}}" max="10">
-      {{objeto.promedio}} puntos
-    </progress>
-    <progress *ngIf="tipo=='encuesta'&&objeto.promedio>4&&objeto.promedio<8" class="progress is-info" value="{{objeto.promedio}}"
-      max="10">
-      {{objeto.promedio}} puntos
-    </progress>
-    <progress *ngIf="tipo=='encuesta'&&objeto.promedio>8" class="progress is-success" value="{{objeto.promedio}}" max="10">
+    <progress *ngIf="tipo=='encuesta'" class="progress" value="{{objeto.promedio}}" max="10" 
+    [ngClass]="{'is-danger':objeto.promedio<4,'is-info':objeto.promedio<8,'is-success':objeto.promedio>8}">
       {{objeto.promedio}} puntos
     </progress>
 
@@ -57,21 +51,26 @@
     </footer>
     <footer class="card-footer" *ngIf="tipo=='comanda'&&usuario.sector=='mozo'">
       <a class="has-text-info card-footer-item" *ngIf="objeto.importe == null" (click)="showModalWindow(objeto, 'importe')">Cobrar</a>
-      <p class=" card-footer-item" *ngIf="objeto.importe != null">${{objeto.importe}}</p>
+      <p class=" card-footer-item" *ngIf="objeto.importe != null">{{objeto.importe | importe}}</p>
       <a class="has-text-info card-footer-item" (click)="showModalWindow(objeto, 'foto')"><span class="icon"><i class="fa fa-upload"></i></span>Foto</a>
     </footer>
     <footer class="card-footer" *ngIf="tipo=='pedido'">
       <a class="has-text-info card-footer-item" *ngIf="objeto.sector==usuario.sector&&objeto.idEmpleado==null" (click)="showModalWindow(objeto, 'time')">Tomar</a>
-      <p class="card-footer-item" *ngIf="objeto.sector==usuario.sector&&objeto.idEmpleado!=null" >{{objeto.tiempo_restante}} minutos</p>
+      <p class="card-footer-item" *ngIf="objeto.sector==usuario.sector&&objeto.idEmpleado!=null" >{{objeto.tiempo_restante | tiempo}}</p>
       <a class="has-text-info card-footer-item" *ngIf="objeto.sector==usuario.sector&&objeto.idEmpleado!=null" (click)="objeto.entregar()">Entregar</a>
       <a class="has-text-info card-footer-item" *ngIf="usuario.sector=='mozo'" (click)="objeto.servir()">Servir</a>
       <a class="has-text-info card-footer-item" *ngIf="usuario.sector=='management'&&(objeto.estado=='pendiente'||objeto.estado=='en preparación')" (click)="objeto.cancelar()">Cancelar</a>
     </footer>
     <footer class="card-footer" *ngIf="tipo=='empleado'&&usuario.sector=='management'">
       <a class="has-text-info card-footer-item" *ngIf="objeto.estado=='activo'" (click)="objeto.deshabilitar()">Deshabilitar</a>
-      <a class="has-text-info card-footer-item" *ngIf="objeto.estado!='activo'" (click)="objeto.activar()">Activar</a>
+      <a class="has-text-info card-footer-item" *ngIf="objeto.estado=='deshabilitado'" (click)="objeto.activar()">Activar</a>
     </footer>
-
+    <footer class="card-footer" *ngIf="tipo=='encuesta'">
+      <p class="card-footer-item has-text-weight-bold" title="Mozo" appLevel [puntos]="objeto.puntosMozo">{{objeto.puntosMozo}}</p>
+      <p class="card-footer-item has-text-weight-bold" title="Mesa" appLevel [puntos]="objeto.puntosMesa">{{objeto.puntosMesa}}</p>
+      <p class="card-footer-item has-text-weight-bold" title="Restaurante" appLevel [puntos]="objeto.puntosRestaurante">{{objeto.puntosRestaurante}}</p>
+      <p class="card-footer-item has-text-weight-bold" title="Cocinero" appLevel [puntos]="objeto.puntosCocinero">{{objeto.puntosCocinero}}</p>
+    </footer>
   </div>
 </div>
 

@@ -59,7 +59,7 @@ export class LoginService {
           this._token = data.token;
           this.http.updateTokenHeaders(data.token);
           localStorage.setItem('token', data.token);
-          this.router.navigate(['/']);
+          window.location.href = '/';
         } else {
           this.popup.show("error", data.mensaje);
         }
@@ -74,7 +74,7 @@ export class LoginService {
       localStorage.setItem('token', null);
       this.http.updateTokenHeaders('');
       this._token = null;
-      this.router.navigate(['/login']);
+      window.location.href = '/login';
     } catch (error) {
       return false;
     }

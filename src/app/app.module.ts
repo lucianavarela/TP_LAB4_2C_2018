@@ -30,6 +30,13 @@ import { RecaptchaComponent } from './components/recaptcha/recaptcha.component';
 import { RecaptchaModule } from 'ng-recaptcha';
 import { Spinner, HTTPStatus } from './interceptors/spinner';
 import { SpinnerComponent } from './components/spinner/spinner.component';
+import { TiempoPipe } from './pipes/tiempo.pipe';
+import { LevelDirective } from './directives/level.directive';
+import { IsAuthDirective } from './directives/isauth.directive';
+import { ImportePipe } from './pipes/importe.pipe';
+import { UserTypePipe } from './pipes/user-type.pipe';
+import { StatusDirective } from './directives/status.directive';
+import { AddFormComponent } from './components/add-form/add-form.component';
 
 const RxJS_Services = [Spinner, HTTPStatus];
 
@@ -39,6 +46,7 @@ const MiRuteo = [
   { path: 'register', component: RegisterComponent },
   { path: 'mesas', component: MesasComponent },
   { path: 'comandas', component: ComandasComponent },
+  { path: 'comandas/carga', component: AddFormComponent },
   { path: 'pedidos', component: PedidosComponent },
   { path: 'empleados', component: EmpleadosComponent },
   { path: 'encuestas', component: EncuestasComponent },
@@ -64,7 +72,14 @@ const MiRuteo = [
     CaptchaComponent,
     ModalListComponent,
     RecaptchaComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    TiempoPipe,
+    LevelDirective,
+    IsAuthDirective,
+    ImportePipe,
+    UserTypePipe,
+    StatusDirective,
+    AddFormComponent
   ],
   imports: [
     BrowserModule,

@@ -7,16 +7,22 @@
       <section class="hero">
         <div class="hero-body">
           <div class="container">
-            <h1 class="title">
-              Bienvenido!
-            </h1>
+            <h1 *ngIf="!is_logged" class="title">Bienvenido!</h1>
+            <h1 *ngIf="is_logged" class="title">Bienvenido{{usuario.sector | userType}}</h1>
             <h2 *ngIf="is_logged" class="subtitle">
               Qué acción querés hacer?
             </h2>
           </div>
         </div>
       </section>
-      <div *ngIf="!is_logged" class="section">
+      <div *showAuthed="'mozo'" class="section">
+        <div class="field" style="margin-bottom:2rem">
+          <div class="control has-text-centered">
+            <button routerLink="/comandas/carga" type="submit" class="button is-large is-info">Cargar Comanda</button>
+          </div>
+        </div>
+      </div>
+      <div *showAuthed="''" class="section">
         <div class="field" style="margin-bottom:2rem">
           <div class="control has-text-centered">
             <button (click)="takeMe()" type="submit" class="button is-large is-info">¿Cómo voy?</button>

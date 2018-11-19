@@ -27,7 +27,7 @@ export class ComandaService {
     return this.miHttp.post(this.ruta, objeto)
       .then(data => {
         if (data.status == "OK") {
-          this.traerComandas();
+          this.router.navigate(['/comandas']);
         } else {
           this.popup.show("error", data.mensaje);
         }
