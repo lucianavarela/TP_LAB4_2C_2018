@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HTTPStatus } from './interceptors/spinner';
 
@@ -11,7 +11,6 @@ import { HTTPStatus } from './interceptors/spinner';
 export class AppComponent {
   title = 'micomanda';
   @ViewChild(SidebarComponent) barra: SidebarComponent;
-  @Output() update: EventEmitter<any> = new EventEmitter<any>();
   HTTPActivity: boolean;
 
   constructor(private httpStatus: HTTPStatus) {
@@ -19,7 +18,7 @@ export class AppComponent {
   }
 
   changeOfRoutes() {
-    this.update.emit();
+    this.barra.updateBar();
   }
 }
 
