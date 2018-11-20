@@ -11,6 +11,8 @@ Detalle de funcionalidades disponibles!
  - Es cliente? Vea el estado de sus pedidos, ingresando en qué mesa y el código que le fue entregado por el mozo.
  - Es un empleado o socio? Ingrese con sus credenciales para acceder a todas las opciones de la aplicación, apretando el boton Ingresa.
   
+  ![Alt text](https://github.com/lucianavarela/TP_LAB4_2C_2018/blob/master/guias/main.png?raw=true "Title")
+  
 ### Mozos
  - Carguen sus nuevas comandas, detallando los pedidos deseados.
  - Una vez listos, sirva los pedidos a los comensales.
